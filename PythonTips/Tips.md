@@ -2,3 +2,22 @@
   # -*- coding: encoding -*
   #!/usr/bin/env python3 (shebang)
   # -*- coding: cp1252 -*-
+
+2) Division in python always return float type to return int and discard any float value use "//"
+to calculate reminder use "%" ex : 5%2 = 1
+   
+
+3) To do power calculation use "**" ex: 2^4 --> 2**4 = 16
+4) In interactive mode last printed expression is assigned to "_" 
+5) Python keywords : ['False', 'None', 'True', 'and', 'as', 'assert', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 'try', 'while', 'with', 'yield']
+6) print function concatenation if you want to print string and integer using print function like print("String" + integer) this would throw and error because we're adding string with integer you need to parse one of the value to make it work as below 
+        - print("String" + str(integer)) or you can pass multiple parameters to print function  as print("String", integer)
+7) In python 2 == 2. (True)
+8) Operator priority table 
+        Priority 	Operator 	
+           1 	      +, - 	            unary
+           2 	      ** 	
+           3 	      *, /, //, % 	
+           4 	      +, - 	            binary
+           5 	      <, <=, >, >= 	
+           6 	      ==, !=
