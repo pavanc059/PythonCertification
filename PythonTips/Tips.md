@@ -21,3 +21,18 @@ to calculate reminder use "%" ex : 5%2 = 1
            4 	      +, - 	            binary
            5 	      <, <=, >, >= 	
            6 	      ==, !=
+9) Variable assignment in python can also be done as following ways
+    i) x = y = z = 5
+   ii) x, y, z = 5, 10, 20
+   
+10) while loop in python can have else condition which executes when you while condition body don't execute 
+    [syntax] : while condition:
+                    #while_body
+               else:
+                    #else_condition body
+    
+11) else in for loop executes at the end of for execution 
+    [syntax] : for variable in range(value):
+                    #for_body
+               else:
+                    #else block the executes at end of for loop
