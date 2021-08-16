@@ -14,16 +14,17 @@ to calculate reminder use "%" ex : 5%2 = 1
         - print("String" + str(integer)) or you can pass multiple parameters to print function  as print("String", integer)
 7) In python 2 == 2. (True)
 8) Operator priority table 
-        Priority 	Operator 	
-           1 	      +, - 	            unary
-           2 	      ** 	
-           3 	      *, /, //, % 	
-           4 	      +, - 	            binary
-           5 	      <, <=, >, >= 	
-           6 	      ==, !=
+        Priority  |	Operator        |
+        --------  | --------------- | --------------
+           1 	  |   +, - 	            unary
+           2 	  |   ** 	
+           3 	  |   *, /, //, % 	
+           4 	  |   +, - 	            binary
+           5 	  |   <, <=, >, >= 	
+           6 	  |   ==, !=
 9) Variable assignment in python can also be done as following ways
-    i) x = y = z = 5
-   ii) x, y, z = 5, 10, 20
+    1) x = y = z = 5
+    2) x, y, z = 5, 10, 20
    
 10) while loop in python can have else condition which executes when you while condition body don't execute 
     [syntax] : while condition:
@@ -36,3 +37,9 @@ to calculate reminder use "%" ex : 5%2 = 1
                     #for_body
                else:
                     #else block the executes at end of for loop
+12) logical operators and bit wise operators in python. logical operators operate on final value of the expression but bit wise operators work on each bit as example below
+    [Example] : i = 15; j = 22
+                print(i and j) : 22
+                print(i & j)   : 6
+                print(j and i) : 15
+                print(j & i)   : 6    
