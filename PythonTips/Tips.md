@@ -13,16 +13,17 @@ to calculate reminder use "%" ex : 5%2 = 1
 6) print function concatenation if you want to print string and integer using print function like print("String" + integer) this would throw and error because we're adding string with integer you need to parse one of the value to make it work as below 
         - print("String" + str(integer)) or you can pass multiple parameters to print function  as print("String", integer)
 7) In python 2 == 2. (True)
-8) Operator priority table 
+8) Operator priority table
+ 
         Priority  |	Operator               |
         --------  | ---------------------- | --------------
-           1 	  |   +, -, ~ 	           |    unary
-           2 	  |   ** 	               |    
-           3 	  |   *, /, //, % 	       |
-           4 	  |   +, - 	               |    binary
+           1 	    |   +, -, ~ 	           |    unary
+           2 	    |   ** 	                 |    
+           3 	    |   *, /, //, % 	       |
+           4 	    |   +, - 	               |    binary
            5      |  <<, >>                |
-           6 	  |   <, <=, >, >= 	       |
-           7 	  |   ==, !=               |
+           6 	    |   <, <=, >, >= 	       |
+           7 	    |   ==, !=               |
            8      |    &                   |
            9      |     |                  |
            10     |  =, +=, -=, *=, /=, %=,| 
