@@ -14,14 +14,19 @@ to calculate reminder use "%" ex : 5%2 = 1
         - print("String" + str(integer)) or you can pass multiple parameters to print function  as print("String", integer)
 7) In python 2 == 2. (True)
 8) Operator priority table 
-        Priority  |	Operator        |
-        --------  | --------------- | --------------
-           1 	  |   +, - 	            unary
-           2 	  |   ** 	
-           3 	  |   *, /, //, % 	
-           4 	  |   +, - 	            binary
-           5 	  |   <, <=, >, >= 	
-           6 	  |   ==, !=
+        Priority  |	Operator               |
+        --------  | ---------------------- | --------------
+           1 	  |   +, -, ~ 	           |    unary
+           2 	  |   ** 	               |    
+           3 	  |   *, /, //, % 	       |
+           4 	  |   +, - 	               |    binary
+           5      |  <<, >>                |
+           6 	  |   <, <=, >, >= 	       |
+           7 	  |   ==, !=               |
+           8      |    &                   |
+           9      |     |                  |
+           10     |  =, +=, -=, *=, /=, %=,| 
+                  |  &=, ^=, |=, >>=, <<=  | 
 9) Variable assignment in python can also be done as following ways
     1) x = y = z = 5
     2) x, y, z = 5, 10, 20
@@ -43,3 +48,5 @@ to calculate reminder use "%" ex : 5%2 = 1
                 print(i & j)   : 6
                 print(j and i) : 15
                 print(j & i)   : 6    
+13) list in python can store list of value of different types as shown below
+        numbers = [10, [2,4,6], 7, 2.0, 'test']
