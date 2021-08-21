@@ -51,3 +51,9 @@ to calculate reminder use "%" ex : 5%2 = 1
                 print(j & i)   : 6    
 13) list in python can store list of value of different types as shown below
         numbers = [10, [2,4,6], 7, 2.0, 'test']
+14) swapping elements in python is simpler than swapping elements in java without creating third variable
+        variable1, variable2 = variable2, variable1
+15) when you copy a variable to another variable it copies the content of the variable(scalar variable) but with list when you copy one list to another it copies memory address of the list
+  modifying one list can effect other list. TO actually copy list python has a syntax called slice 
+    [syntax] my_list[start:end]
+    [example] list1 = [1,2] \n list2 = [:] 
