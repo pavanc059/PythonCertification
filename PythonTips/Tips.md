@@ -64,5 +64,14 @@ to calculate reminder use "%" ex : 5%2 = 1
                  list2 = [x ** 2 for x in range(10)] - this used x value from for loop and substitute in calculation which results (0, 1, 4, 9,16,25, 36, 49, 64, 81)   
                  list3 = [2 ** i for i in range(8)] - (1, 2, 4, 8, 16, 32, 64, 128)
                  list4 = [x for x in list2 if x % 2 != 0 ] - you can also include if condition before filling the list in python this list will contain all odd numbers
-
-
+17) Python built-in functions
+    |                |             |Built-in Functions|             |                 |
+    |----------------|-------------|------------------|-------------|-----------------|
+    |   abs()        | delattr()   |    hash()        | memoryview()| set()           |
+    |   all()        | dict()      |    help()        | min()       | setattr()       |
+    |   any()	     | dir()       |    hex()         | next()      | slice()         |
+    |   ascii()      | divmod()    |    id()          | object()    | sorted()        |
+    |   bin()        | enumerate() |    input()       | oct()       | staticmethod()  |
+    |   bool()       | eval()      |    int()         | open()      | str()           |
+    |   breakpoint() | exec()      |    isinstance()  | ord()       | sum()           |
+    |   bytearray()  | filter()    |    issubclass()  | pow()       | super()         |  
