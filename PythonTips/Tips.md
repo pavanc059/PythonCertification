@@ -17,13 +17,13 @@ to calculate reminder use "%" ex : 5%2 = 1
  
         Priority  |	Operator               |
         --------  | ---------------------- | --------------
-           1 	    |   +, -, ~ 	           |    unary
-           2 	    |   ** 	                 |    
-           3 	    |   *, /, //, % 	       |
-           4 	    |   +, - 	               |    binary
+           1 	  |   +, -, ~ 	           |    unary
+           2 	  |   ** 	               |    
+           3 	  |   *, /, //, % 	       |
+           4 	  |   +, - 	               |    binary
            5      |  <<, >>                |
-           6 	    |   <, <=, >, >= 	       |
-           7 	    |   ==, !=               |
+           6 	  |   <, <=, >, >= 	       |
+           7 	  |   ==, !=               |
            8      |    &                   |
            9      |     |                  |
            10     |  =, +=, -=, *=, /=, %=,| 
@@ -55,5 +55,14 @@ to calculate reminder use "%" ex : 5%2 = 1
         variable1, variable2 = variable2, variable1
 15) when you copy a variable to another variable it copies the content of the variable(scalar variable) but with list when you copy one list to another it copies memory address of the list
   modifying one list can effect other list. TO actually copy list python has a syntax called slice 
-    [syntax] my_list[start:end]
+    [syntax] my_list[start:end] : Note end value should be last element index -1  that you wish to copy
+        - start is the index of the first element included in the slice;
+        - end is the index of the first element not included in the slice.
     [example] list1 = [1,2] \n list2 = [:] 
+16) list comprehension a special syntax used by python to fill large list 
+    [examples] : list = [value for i in range(8)] - this fills list with value from 0 to 7 indexes 
+                 list2 = [x ** 2 for x in range(10)] - this used x value from for loop and substitute in calculation which results (0, 1, 4, 9,16,25, 36, 49, 64, 81)   
+                 list3 = [2 ** i for i in range(8)] - (1, 2, 4, 8, 16, 32, 64, 128)
+                 list4 = [x for x in list2 if x % 2 != 0 ] - you can also include if condition before filling the list in python this list will contain all odd numbers
+
+
