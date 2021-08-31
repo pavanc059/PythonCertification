@@ -64,7 +64,7 @@ to calculate reminder use "%" ex : 5%2 = 1
                  list2 = [x ** 2 for x in range(10)] - this used x value from for loop and substitute in calculation which results (0, 1, 4, 9,16,25, 36, 49, 64, 81)   
                  list3 = [2 ** i for i in range(8)] - (1, 2, 4, 8, 16, 32, 64, 128)
                  list4 = [x for x in list2 if x % 2 != 0 ] - you can also include if condition before filling the list in python this list will contain all odd numbers
-17) Python built-in functions
+17) Python built-in functions :https://docs.python.org/3/library/functions.html
     |                |             |Built-in Functions|             |                 |
     |----------------|-------------|------------------|-------------|-----------------|
     |   abs()        | delattr()   |    hash()        | memoryview()| set()           |
@@ -75,3 +75,6 @@ to calculate reminder use "%" ex : 5%2 = 1
     |   bool()       | eval()      |    int()         | open()      | str()           |
     |   breakpoint() | exec()      |    isinstance()  | ord()       | sum()           |
     |   bytearray()  | filter()    |    issubclass()  | pow()       | super()         |  
+18) Python offers another convention for passing arguments, where the meaning of the argument is dictated by its name, not by its position - it's called keyword argument passing
+19) Passing arguments to a function rule You can mix positional and keyword arguments fashions if you want - there is only one unbreakable rule: you have to put positional arguments before keyword arguments.
+20) None keyword used for assign it to a variable (or return it as a function's result) or when you compare it with a variable to diagnose its internal state
