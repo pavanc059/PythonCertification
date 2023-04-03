@@ -6,6 +6,7 @@ This Project is intended to prepare you to attend python entry level to advanced
 Python is an interpreted language, which can save you considerable time during program development because no compilation and linking is necessary.
 
 ```
+
 ## Python Interpreter
 
 The Python interpreter is usually installed as /usr/local/bin/python3.11 on those machines where it is available; putting /usr/local/bin in your Unix shell’s search path makes it possible to start it by typing the command
@@ -19,3 +20,6 @@ The Python interpreter is usually installed as /usr/local/bin/python3.11 on thos
 - [command line options](https://docs.python.org/3/using/cmdline.html#using-on-general)
 
 Python reserved keywords
+========================
+
+![IMG-2361](https://user-images.githubusercontent.com/11929387/180302119-d8076204-3cf6-4858-9413-f4a51980ad11.JPG)
