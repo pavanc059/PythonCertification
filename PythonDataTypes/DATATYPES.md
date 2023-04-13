@@ -14,11 +14,9 @@ you must follow some strict rules:
 * upper- and lower-case letters are treated as different (a little differently than in the real world - *Alice* and *ALICE* are the same first names, but in Python they are two different variable names, and consequently, two different variables);
 * the name of the variable must not be any of Python's reserved words (the keywords - we'll explain more about this soon).
 
-
 ### Variable assignment with shortend :
 
 example : a = 6|b = 3|a /= 2 * b in this expression python first evaluates value after equals and then assign to value i.e 2 * b = 6 | a = 6 → 6 / 6 = 1.0
-
 
 | Example                                     | Data Type  |
 | ------------------------------------------- | ---------- |
@@ -37,3 +35,17 @@ example : a = 6|b = 3|a /= 2 * b in this expression python first evaluates value
 | x = bytearray(5)                            | bytearray  |
 | x = memoryview(bytes(5))                    | memoryview |
 | x = None                                    | NoneType   |
+
+### Type Cast :
+
+* The `int()` function **takes one argument** (e.g., a string: `int(string)`) and tries to convert it into an integer;
+* The `float()` function takes one argument (e.g., a string: `float(string)`) and tries to convert it into a float.
+
+
+‘10’ always represents the total number of digits in any base if you are writing the number in the respective number system. *But it’s only funny in binary.*
+
+| Number System | Numbric value | Converted to Number systme value | number denotation                                   | Python function used to conver                                              |
+| ------------- | ------------- | -------------------------------- | --------------------------------------------------- | --------------------------------------------------------------------------- |
+| Binary        | 4             | 0b100                            | 0b (0's and 1's)                                    | bin(number) => gives binary format                                          |
+| Hexadecimal   | 16            | 0x10 or 0xA                      | 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, and F. | hex() function to convert values to hexadecimal format for display purposes |
+| Octal         | 8             | 0o10                             | 0, 1, 2, 3, 4, 5, 6, 7                              | oct()                                                                      |
