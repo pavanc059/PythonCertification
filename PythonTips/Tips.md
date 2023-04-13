@@ -79,10 +79,13 @@
     | bytearray()  | filter()    | issubclass()       | pow()        | super()        |
 18) Python offers another convention for passing arguments, where the meaning of the argument is dictated by its name, not by its position - it's called keyword argument passing
 19) Passing arguments to a function rule You can mix positional and keyword arguments fashions if you want - there is only one unbreakable rule: you have to put positional arguments before keyword arguments.
-20) None keyword used for assign it to a variable (or return it as a function's result) or when you compare it with a variable to diagnose its internal state
+20) None keyword used for assign it to a variable (or return it as a function's result) or when you compare it with a variable to diagnose its internal state.
+21) int() function converts string to integer/number we can pass second argument to convert given string formatted number to binary (2), hexa (16) or Octa (10) => Ex int("10", 2) = 2, int("A", 16) = 10
 
 ### Modules that are useful :
+
 **timeit** : Tool for measuring execution time of small code snippets.
+
 <details>
   <summary>Example</summary>
     ```python
