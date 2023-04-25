@@ -14,8 +14,15 @@
 6) print function concatenation if you want to print string and integer using print function like print("String" + integer) this would throw and error because we're adding string with integer you need to parse one of the value to make it work as below
 
    - print("String" + str(integer)) or you can pass multiple parameters to print function  as print("String", integer)
-7) In python 2 == 2. (True)
-8) Operator priority table
+7) Print function take multiple comma(',') seprated values and 'sep' argument to seprate between values and 'end' argument value to print at end print(value, ..., sep=' ', end='\n', file=sys.stdout, flush=False) Prints the values to a stream, or to sys.stdout by default. Optional keyword arguments:
+
+   - > file: a file-like object (stream); defaults to the current sys.stdout.
+     >
+   - sep: string inserted between values, default a space.
+   - end: string appended after the last value, default a newline.
+   - flush: whether to forcibly flush the stream.
+8) In python 2 == 2. (True)
+9) Operator priority table
 
    | Priority | Operator               |             |
    | -------- | ---------------------- | ----------- |
@@ -30,42 +37,42 @@
    | 9        |                        |             |
    | 10       | =, +=, -=, *=, /=, %=, |             |
    |          | &=, ^=,                | =, >>=, <<= |
-9) Variable assignment in python can also be done as following ways
+10) Variable assignment in python can also be done as following ways
 
-   1) x = y = z = 5
-   2) x, y, z = 5, 10, 20
-10) while loop in python can have else condition which executes when you while condition body don't execute
+    1) x = y = z = 5
+    2) x, y, z = 5, 10, 20
+11) while loop in python can have else condition which executes when you while condition body don't execute
     [syntax] : while condition:
     #while_body
     else:
     #else_condition body
-11) else in for loop executes at the end of for execution
+12) else in for loop executes at the end of for execution
     [syntax] : for variable in range(value):
     #for_body
     else:
     #else block the executes at end of for loop
-12) logical operators and bit wise operators in python. logical operators operate on final value of the expression but bit wise operators work on each bit as example below
+13) logical operators and bit wise operators in python. logical operators operate on final value of the expression but bit wise operators work on each bit as example below
     [Example] : i = 15; j = 22
     print(i and j) : 22
     print(i & j)   : 6
     print(j and i) : 15
     print(j & i)   : 6
-13) list in python can store list of value of different types as shown below
+14) list in python can store list of value of different types as shown below
     numbers = [10, [2,4,6], 7, 2.0, 'test']
-14) swapping elements in python is simpler than swapping elements in java without creating third variable
+15) swapping elements in python is simpler than swapping elements in java without creating third variable
     variable1, variable2 = variable2, variable1
-15) when you copy a variable to another variable it copies the content of the variable(scalar variable) but with list when you copy one list to another it copies memory address of the list
+16) when you copy a variable to another variable it copies the content of the variable(scalar variable) but with list when you copy one list to another it copies memory address of the list
     modifying one list can effect other list. TO actually copy list python has a syntax called slice
     [syntax] my_list[start:end] : Note end value should be last element index -1  that you wish to copy
 
     - start is the index of the first element included in the slice;
     - end is the index of the first element not included in the slice.
       [example] list1 = [1,2] \n list2 = [:]
-16) list comprehension a special syntax used by python to fill large list
+17) list comprehension a special syntax used by python to fill large list
     [examples] : list = [value for i in range(8)] - this fills list with value from 0 to 7 indexes
     list2 = [x ** 2 for x in range(10)] - this used x value from for loop and substitute in calculation which results (0, 1, 4, 9,16,25, 36, 49, 64, 81)list3 = [2 ** i for i in range(8)] - (1, 2, 4, 8, 16, 32, 64, 128)
     list4 = [x for x in list2 if x % 2 != 0 ] - you can also include if condition before filling the list in python this list will contain all odd numbers
-17) Python built-in functions :https://docs.python.org/3/library/functions.html
+18) Python built-in functions :https://docs.python.org/3/library/functions.html
 
     |              |             | Built-in Functions |              |                |
     | ------------ | ----------- | ------------------ | ------------ | -------------- |
@@ -77,10 +84,22 @@
     | bool()       | eval()      | int()              | open()       | str()          |
     | breakpoint() | exec()      | isinstance()       | ord()        | sum()          |
     | bytearray()  | filter()    | issubclass()       | pow()        | super()        |
-18) Python offers another convention for passing arguments, where the meaning of the argument is dictated by its name, not by its position - it's called keyword argument passing
-19) Passing arguments to a function rule You can mix positional and keyword arguments fashions if you want - there is only one unbreakable rule: you have to put positional arguments before keyword arguments.
-20) None keyword used for assign it to a variable (or return it as a function's result) or when you compare it with a variable to diagnose its internal state.
-21) int() function converts string to integer/number we can pass second argument to convert given string formatted number to binary (2), hexa (16) or Octa (10) => Ex int("10", 2) = 2, int("A", 16) = 10
+19) Python offers another convention for passing arguments, where the meaning of the argument is dictated by its name, not by its position - it's called keyword argument passing
+20) Passing arguments to a function rule You can mix positional and keyword arguments fashions if you want - there is only one unbreakable rule: you have to put positional arguments before keyword arguments.
+21) None keyword used for assign it to a variable (or return it as a function's result) or when you compare it with a variable to diagnose its internal state.
+22) int() function converts string to integer/number we can pass second argument to convert given string formatted number to binary (2), hexa (16) or Octa (10) => Ex int("10", 2) = 2, int("A", 16) = 10
+23) The `range()` function generates a sequence of numbers. It accepts integers and returns range objects. The syntax of `range()` looks as follows: `range(start, stop, step)`
+
+    * `start` is an optional parameter specifying the starting number of the sequence (0 by default)
+    * `stop` is an optional parameter specifying the end of the sequence generated (it is not included),
+    * and `step` is an optional parameter specifying the difference between the numbers in the sequence (1 by default.)
+
+    ```
+    for i in range(6, 1, -2):
+        print(i, end=" ")  # Outputs: 6, 4, 2
+
+    ```
+24) Bitwise operators are used to compare single bits of data **important** remark: the arguments of these operators must be integers; we must not use floats here.
 
 ### Modules that are useful :
 
