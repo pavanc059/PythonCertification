@@ -101,6 +101,20 @@
     ```
 24) Bitwise operators are used to compare single bits of data **important** remark: the arguments of these operators must be integers; we must not use floats here.
 
+    ```
+    sample bitwise Operations
+        & does a bitwise and, e.g., x & y = 0, which is 0000 0000 in binary,
+        | does a bitwise or, e.g., x | y = 31, which is 0001 1111 in binary,
+        ˜ does a bitwise not, e.g., ˜ x = 240*, which is 1111 0000 in binary,
+        ^ does a bitwise xor, e.g., x ^ y = 31, which is 0001 1111 in binary,
+        >> does a bitwise right shift, e.g., y >> 1 = 8, which is 0000 1000 in binary,
+        << does a bitwise left shift, e.g., y << 3 = , which is 1000 0000 in binary,
+
+    ```
+
+25. If you want to check the list's current length, you can use a function named `len()` (its name comes from  *length* )
+26. 
+
 ### Modules that are useful :
 
 **timeit** : Tool for measuring execution time of small code snippets.
