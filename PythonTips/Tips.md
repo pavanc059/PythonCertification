@@ -113,7 +113,39 @@
     ```
 
 25. If you want to check the list's current length, you can use a function named `len()` (its name comes from  *length* )
-26. 
+26. Python swapping withoout third variable
+
+    ```
+    Other language like java 
+    variable_1 = 1
+    variable_2 = 2
+
+    auxiliary = variable_1
+    variable_1 = variable_2
+    variable_2 = auxiliary
+
+    In Python :
+    variable_1 = 1
+    variable_2 = 2
+
+    variable_1, variable_2 = variable_2, variable_1
+
+    swapping in list :
+    my_list = [10, 1, 8, 3, 5]
+
+    my_list[0], my_list[4] = my_list[4], my_list[0]
+    my_list[1], my_list[3] = my_list[3], my_list[1]
+
+    print(my_list)
+    output : [5, 3, 8, 1, 10]
+
+    Using list :
+    my_list = [10, 1, 8, 3, 5]
+    length = len(my_list)
+
+    for i in range(length // 2):
+        my_list[i], my_list[length - i - 1] = my_list[length - i - 1], my_list[i]
+    ```
 
 ### Modules that are useful :
 

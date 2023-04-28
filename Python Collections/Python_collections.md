@@ -13,8 +13,23 @@
   ```
 
   - List methods :
+
     - append() - A new element may be glued to the end of the existing list. It takes its argument's value and puts it at the end of the list which owns the method.
     - insert() method is a bit smarter - it can add a new element at any place in the list, not only at the end.It takes two arguments, the first shows the required location of the element to be inserted; note: all the existing elements that occupy locations to the right of the new element (including the one at the indicated position) are shifted to the right, in order to make space for the new element; the second is the element to be inserted.
+  - The for instruction specifies the variable used to browse the list (i here) followed by the in keyword and the name of the list being processed.
+  - You can use the `sort()` method to sort elements of a list
+  - There is also a list method called `reverse()`, which you can use to reverse the list.
+  - The name of an ordinary variable is the **name of its content. The name of a list is the name of a memory location where the list is stored.**
+
+    ```
+    Code Example :
+    list_1 = [1]
+    list_2 = list_1
+    list_1[0] = 2
+    print(list_2)
+
+    The assignment: list_2 = list_1 copies the name of the array, not its contents. In effect, the two names (list_1 and list_2) identify the same location in the computer memory. Modifying one of them affects the other, and vice versa.
+    ```
 
   # Functions vs. methods
 
