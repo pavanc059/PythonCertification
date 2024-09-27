@@ -100,6 +100,10 @@
 
     ```
 24) Bitwise operators are used to compare single bits of data **important** remark: the arguments of these operators must be integers; we must not use floats here.
+25) Formatting string 
+    * `r` - print as raw string (ex: print(r'test\ttest') will print test\ttest if you 'r' not spectified it will print as test test)
+    * `f` - format the string to substitute any code variable into to print statement (ex: print(f'Print aby variable value {variable}'))
+    * `b` - Represents a sequence of bytes rather than a string. Useful for binary data manipulation. 
 
 ### Modules that are useful :
 

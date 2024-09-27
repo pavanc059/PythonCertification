@@ -3,8 +3,9 @@ import sys
 inputText = input("Enter Text to exit to quit program or quit to quit\n")
 
 if (inputText == 'exit'):
-    print('^Z\n')
-    breakpoint()
+    print(chr(0b1011010))
+    print(chr(0b0100001))
+    #breakpoint()
     print('YES')
     print('next line')
 elif (inputText == 'quit'):
