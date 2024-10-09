@@ -37,3 +37,8 @@ The first variant chooses a "random" element from the input sequence and returns
 The second one builds a list (a sample) consisting of the elements_to_choose element (which defaults to 1) "drawn" from the input sequence.
 
 In other words, the function chooses some of the input elements, returning a list with the choice. The elements in the sample are placed in random order. Note: the elements_to_choose must not be greater than the length of the input sequence.
+
+### platform module
+The platform module lets you access the underlying platform's data, i.e., hardware, operating system, and interpreter version information.
+
+There is a function that can show you all the underlying layers in one glance, named platform, too. It just returns a string describing the environment; thus, its output is rather addressed to humans than to automated processing
