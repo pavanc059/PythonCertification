@@ -53,3 +53,16 @@ def where_is(point):
 point = Point(0,'test')
 print(type(point) is Point)
 where_is(point)
+
+squares = list(map(lambda x: x**2, range(10)))
+
+
+print(squares)
+
+def test(i):
+    print(f'Inside function {i*2}')
+    return i*2
+
+list_test = [1,4,6,2,7,8]
+
+print(list(map(test, list_test)))

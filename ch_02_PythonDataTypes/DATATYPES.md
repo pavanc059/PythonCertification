@@ -23,7 +23,7 @@ example : a = 6|b = 3|a /= 2 * b in this expression python first evaluates value
 | x = "Hello World"                           | str        |
 | x = 20                                      | int        |
 | x = 20.5                                    | float      |
-| x = 1j                                      | complex    |
+| x = 1j                                      | Complex : Complex numbers consist of a real part and an imaginary part, where the imaginary part is denoted by 'j' in Python (equivalent to 'i' in mathematics).   |
 | x = ["apple", "banana", "cherry"]           | list       |
 | x = ("apple", "banana", "cherry")           | tuple      |
 | x = range(6)                                | range      |

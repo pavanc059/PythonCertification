@@ -1,4 +1,4 @@
-Sure! Here’s a deep dive into Python's core data structures: lists, tuples, sets, and dictionaries.
+Here’s a deep dive into Python's core data structures: lists, tuples, sets, and dictionaries.
 
 ### 1. Lists
 
