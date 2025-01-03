@@ -1,4 +1,5 @@
 Character Encoding :
+ Character encoding is a system that pairs characters (letters, numbers, symbols) with specific numeric values that computers can understand and process. Think of it as a translation system between human-readable text and computer-readable numbers
 
 ASCII (American Standard Code for Information) :
 
@@ -269,3 +270,18 @@ below table is from unicode charts
 | D |     | ఒ  | భ  | ఽ  |
 | E | ఎ  | ఒ  | మ  | ా  |
 | F | ఏ  | ఒ  | య  | $   |
+
+
+- Always specify the encoding when reading/writing text files
+- Use UTF-8 for new projects (it's the de facto standard)
+- Handle encoding errors gracefully
+```
+# Reading a file with explicit encoding
+try:
+    with open('file.txt', 'r', encoding='utf-8') as f:
+        content = f.read()
+except UnicodeDecodeError:
+    print("Error: Could not decode file with UTF-8")
+
+```
+ 
