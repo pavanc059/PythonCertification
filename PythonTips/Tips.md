@@ -121,3 +121,13 @@
         output : 50000000 loops, best of 5: 8.58 nsec per loop
     ```
 </details>
+
+
+26) .pyc comes from the words Python and compiled. File with extention .pyc is a compiled version of a module stored in pycache folder. When Python imports a module for the first time, it translates its contents into a somewhat compiled shape. The file doesn't contain machine code - it's internal Python semi-compiled code, ready to be executed by Python's interpreter. As such a file doesn't require lots of the checks needed for a pure source file, the execution starts faster, and runs faster, too.
+
+27) Importing module 
+
+    there is a module named mod1;
+    there is a module named mod2 which contains the import mod1 instruction;
+    there is a main file containing the import mod1 and import mod2 instructions.
+    \- At first glance, you may think that mod1 will be imported twice - fortunately, only the first import occurs. Python remembers the imported modules and silently omits all subsequent imports.
