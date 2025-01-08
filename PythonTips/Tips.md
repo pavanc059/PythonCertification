@@ -131,3 +131,5 @@
     there is a module named mod2 which contains the import mod1 instruction;
     there is a main file containing the import mod1 and import mod2 instructions.
     \- At first glance, you may think that mod1 will be imported twice - fortunately, only the first import occurs. Python remembers the imported modules and silently omits all subsequent imports.
+
+28) If you're trying to find a character or string in another string use find() insted of index. It's safer - it doesn't generate an error for an argument containing a non-existent substring (it returns -1 then)
