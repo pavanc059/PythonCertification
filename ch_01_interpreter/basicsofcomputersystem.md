@@ -1,4 +1,5 @@
 Character Encoding :
+ Character encoding is a system that pairs characters (letters, numbers, symbols) with specific numeric values that computers can understand and process. Think of it as a translation system between human-readable text and computer-readable numbers
 
 ASCII (American Standard Code for Information) :
 
@@ -207,7 +208,33 @@ ISO/IEC 8859: (International Organization for Standardization)/(International El
 | 1111 1111                                                                       | 377                                          | 255                                              | FF                                                       | ÿ                                                                                          | [˙](https://en.wikipedia.org/wiki/%CB%99 "˙")                                   | [џ](https://en.wikipedia.org/wiki/Dzhe "Dzhe")                                   |                                                                 |                                                                             |                                                              | ÿ                                                                     | [ĸ](https://en.wikipedia.org/wiki/%C4%B8 "ĸ")                              |                                                              | [’](https://en.wikipedia.org/wiki/Apostrophe "Apostrophe")           | ÿ                                                              |                                                                 |                                                                 |                                                                 |                                                                 |
 | [Binary](https://en.wikipedia.org/wiki/Binary_numeral_system "Binary numeral system") | [Oct](https://en.wikipedia.org/wiki/Octal "Octal") | [Dec](https://en.wikipedia.org/wiki/Decimal "Decimal") | [Hex](https://en.wikipedia.org/wiki/Hexadecimal "Hexadecimal") | 1                                                                                           | 2                                                                           | 3                                                                           | 4                                                               | 5                                                                           | 6                                                            | 7                                                                      | 8                                                                      | 9                                                            | 10                                                              | 11                                                              | 13                                                              | 14                                                              | 15                                                              | 16                                                              |
 
-UTF-8 :
+### Code points and code pages
+
+We need a new term now: a code point.
+
+A code point is a number which makes a character. For example, 32 is a code point which makes a space in ASCII encoding. We can say that standard ASCII code consists of 128 code points.
+
+As standard ASCII occupies 128 out of 256 possible code points, you can only make use of the remaining 128.
+
+It's not enough for all possible languages, but it may be sufficient for one language, or for a small group of similar languages.
+
+Can you set the higher half of the code points differently for different languages? Yes, you can. Such a concept is called a code page.
+
+A code page is a standard for using the upper 128 code points to store specific national characters. For example, there are different code pages for Western Europe and Eastern Europe, Cyrillic and Greek alphabets, Arabic and Hebrew languages, and so on.
+
+This means that the one and same code point can make different characters when used in different code pages.
+
+For example, the code point 200 makes Č (a letter used by some Slavic languages) when utilized by the ISO/IEC 8859-2 code page, and makes Ш (a Cyrillic letter) when used by the ISO/IEC 8859-5 code page.
+
+In consequence, to determine the meaning of a specific code point, you have to know the target code page.
+
+In other words, the code points derived from code the page concept are ambiguous.
+
+### Unicode :
+- Unicode assigns unique (unambiguous) characters (letters, hyphens, ideograms, etc.) to more than a million code points. The first 128 Unicode code points are identical to ASCII, and the first 256 Unicode code points are identical to the ISO/IEC 8859-1 code page (a code page designed for western European languages).
+- UCS-4 uses 32 bits (four bytes) to store each character, and the code is just the Unicode code points' unique number. A file containing UCS-4 encoded text may start with a BOM (byte order mark), an unprintable combination of bits announcing the nature of the file's contents. Some utilities may require it.
+- As you can see, UCS-4 is a rather wasteful standard - it increases a text's size by four times compared to standard ASCII. Fortunately, there are smarter forms of encoding Unicode texts.
+### UTF-8 :
 
 UTF-8 is a variable-length character encoding standard used for electronic communication. Defined by the Unicode Standard, the name is derived from Unicode (or Universal Coded Character Set) Transformation Format – 8-bit.[1]
 
@@ -269,3 +296,19 @@ below table is from unicode charts
 | D |     | ఒ  | భ  | ఽ  |
 | E | ఎ  | ఒ  | మ  | ా  |
 | F | ఏ  | ఒ  | య  | $   |
+
+
+- Always specify the encoding when reading/writing text files
+- Use UTF-8 for new projects (it's the de facto standard)
+- Handle encoding errors gracefully
+```
+# Reading a file with explicit encoding
+try:
+    with open('file.txt', 'r', encoding='utf-8') as f:
+        content = f.read()
+except UnicodeDecodeError:
+    print("Error: Could not decode file with UTF-8")
+
+```
+
+

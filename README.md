@@ -23,3 +23,6 @@ Python reserved keywords
 ========================
 
 ![IMG-2361](https://user-images.githubusercontent.com/11929387/180302119-d8076204-3cf6-4858-9413-f4a51980ad11.JPG)
+
+## TO-DO advance :
+* (dunder methods or double under methods)[https://dbader.org/blog/python-dunder-methods]
