@@ -100,6 +100,10 @@
 
     ```
 24) Bitwise operators are used to compare single bits of data **important** remark: the arguments of these operators must be integers; we must not use floats here.
+25) Formatting string 
+    * `r` - print as raw string (ex: print(r'test\ttest') will print test\ttest if you 'r' not spectified it will print as test test)
+    * `f` - format the string to substitute any code variable into to print statement (ex: print(f'Print aby variable value {variable}'))
+    * `b` - Represents a sequence of bytes rather than a string. Useful for binary data manipulation. 
 
     ```
     sample bitwise Operations
@@ -163,3 +167,15 @@
         output : 50000000 loops, best of 5: 8.58 nsec per loop
     ```
 </details>
+
+
+26) .pyc comes from the words Python and compiled. File with extention .pyc is a compiled version of a module stored in pycache folder. When Python imports a module for the first time, it translates its contents into a somewhat compiled shape. The file doesn't contain machine code - it's internal Python semi-compiled code, ready to be executed by Python's interpreter. As such a file doesn't require lots of the checks needed for a pure source file, the execution starts faster, and runs faster, too.
+
+27) Importing module 
+
+    there is a module named mod1;
+    there is a module named mod2 which contains the import mod1 instruction;
+    there is a main file containing the import mod1 and import mod2 instructions.
+    \- At first glance, you may think that mod1 will be imported twice - fortunately, only the first import occurs. Python remembers the imported modules and silently omits all subsequent imports.
+
+28) If you're trying to find a character or string in another string use find() insted of index. It's safer - it doesn't generate an error for an argument containing a non-existent substring (it returns -1 then)

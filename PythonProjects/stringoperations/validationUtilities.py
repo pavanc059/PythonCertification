@@ -7,18 +7,14 @@ import string
 
 
 #This function returns true if given string is ASCII takes string as first arguments and seecond argument as boolean(True=upper/False=lower) to find in ascii upper values or lower
-def findGivenStringisASCII(inputString :str,  lower=""):    
+def findGivenStringisASCII(inputString :str,  lower :bool) -> bool:    
     if(inputString and isinstance(inputString, str)):
         if(lower):
-            for x in inputString:
-                if (x not in string.ascii_uppercase):
-                    return False
-            return True
-        elif(lower == False):
-            for x in inputString:
-                if (x not in string.ascii_lowercase):
-                    return False
-            return True
+            for inputString in string.ascii_uppercase:
+                return True
+        elif(not lower):
+            for inputString in string.ascii_lowercase:
+                    return True
         else:
             for x in inputString:
                 if (x not in string.ascii_letters):
@@ -52,4 +48,4 @@ def isDigit_Hexa_Octa(input, startPosition=0, endPosition=0, isDigit=False, isHe
         return listOfResults
         
 
-print(isDigit_Hexa_Octa("A", isHexa=True))
+#print(isDigit_Hexa_Octa("A", isHexa=True))

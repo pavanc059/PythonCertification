@@ -73,3 +73,93 @@ Loop Control statements :
   else:
       print("else:", i)
   ```
+
+##### Match statement :
+* A match statement takes an expression and compares its value to successive patterns given as one or more case blocks. This is superficially similar to a switch statement in C, Java or JavaScript (and many other languages).
+* Only the first pattern that matches gets executed and it can also extract components (sequence elements or object attributes) from the value into variables.
+```
+def http_error(status):
+    match status:
+        case 400:
+            return "Bad request"
+        case 404:
+            return "Not found"
+        case 418:
+            return "I'm a teapot"
+        case _:
+            return "Something's wrong with the internet"
+
+Match Python object 
+
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+def where_is(point):
+    match point:
+        case Point(x=0, y=0):
+            print("Origin")
+        case Point(x=0, y=y):
+            print(f"Y={y}")  
+            print(type(point) is Point)      
+        case Point(x=x, y=0):
+            print(f"X={x}")
+        case Point(x=x, y=y):
+            print(f"X={x} | Y={y}")        
+        case Point():
+            print("Somewhere else")
+        case _:
+            print("Not a point")
+
+match args is used to match arguments to match case object 
+class Point:
+    __match_args__ = (x,y)
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+def where_is(point):
+    match point:
+        case Point(0, 0):
+            print("Origin")
+        case Point(0, y):
+            print(f"Y={y}")  
+            print(type(point) is Point)      
+        case Point(x, 0):
+            print(f"X={x}")
+        case Point(x, y):
+            print(f"X={x} | Y={y}")        
+        case Point():
+            print("Somewhere else")
+        case _:
+            print("Not a point")
+
+```
+In practical terms, this allows for more concise pattern matching syntax. For example, if you have a class like this:
+```
+class Point:
+    __match_args__ = ('x', 'y')
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+```
+You can now use a more compact syntax in a match statement:
+```
+def describe_point(point):
+    match point:
+        case Point(0, 0):
+            return "Origin"
+        case Point(0, y):
+            return f"On the Y-axis at {y}"
+        case Point(x, 0):
+            return f"On the X-axis at {x}"
+        case Point(x, y):
+            return f"At coordinates ({x}, 
+```
+Without __match_args__, you'd have to use a more verbose syntax:
+```
+case Point(x=0, y=0):
+    # ...
+```
