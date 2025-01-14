@@ -5,6 +5,7 @@ inputText = input("Enter Text to exit to quit program or quit to quit\n")
 if (inputText == 'exit'):
     print(chr(0b1011010))
     print(chr(0b0100001))
+    print(chr(65+2))
     #breakpoint()
     print('YES')
     print('next line')
