@@ -105,6 +105,52 @@
     * `f` - format the string to substitute any code variable into to print statement (ex: print(f'Print aby variable value {variable}'))
     * `b` - Represents a sequence of bytes rather than a string. Useful for binary data manipulation. 
 
+    ```
+    sample bitwise Operations
+        & does a bitwise and, e.g., x & y = 0, which is 0000 0000 in binary,
+        | does a bitwise or, e.g., x | y = 31, which is 0001 1111 in binary,
+        ˜ does a bitwise not, e.g., ˜ x = 240*, which is 1111 0000 in binary,
+        ^ does a bitwise xor, e.g., x ^ y = 31, which is 0001 1111 in binary,
+        >> does a bitwise right shift, e.g., y >> 1 = 8, which is 0000 1000 in binary,
+        << does a bitwise left shift, e.g., y << 3 = , which is 1000 0000 in binary,
+
+    ```
+
+25. If you want to check the list's current length, you can use a function named `len()` (its name comes from  *length* )
+26. Python swapping withoout third variable
+
+    ```
+    Other language like java 
+    variable_1 = 1
+    variable_2 = 2
+
+    auxiliary = variable_1
+    variable_1 = variable_2
+    variable_2 = auxiliary
+
+    In Python :
+    variable_1 = 1
+    variable_2 = 2
+
+    variable_1, variable_2 = variable_2, variable_1
+
+    swapping in list :
+    my_list = [10, 1, 8, 3, 5]
+
+    my_list[0], my_list[4] = my_list[4], my_list[0]
+    my_list[1], my_list[3] = my_list[3], my_list[1]
+
+    print(my_list)
+    output : [5, 3, 8, 1, 10]
+
+    Using list :
+    my_list = [10, 1, 8, 3, 5]
+    length = len(my_list)
+
+    for i in range(length // 2):
+        my_list[i], my_list[length - i - 1] = my_list[length - i - 1], my_list[i]
+    ```
+
 ### Modules that are useful :
 
 **timeit** : Tool for measuring execution time of small code snippets.
