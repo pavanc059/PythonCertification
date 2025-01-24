@@ -30,4 +30,44 @@ class Stack:
 
 ###### note: the obligatory parameter is usually named self - it's only a convention, but you should follow it - it simplifies the process of reading and understanding your code.
 
+#### Adding properties to ojbect through constructor :
+```
+class Stack:
+    def __init__(self):
+        self.stackList = []
+
+stackObject = Stack()
+print(len(stackObject.stackList))
+```
+- we've used the dotted notation, just like when invoking methods; this is the general convention for accessing an object's properties - you need to name the object, put a dot (.)after it, and specify the desired property's name; don't use parentheses! You don't want to invoke a method - you want to access a property;
+- if you set a property's value for the very first time (like in the constructor), you are creating it; from that moment on, the object has got the property and is ready to use its value;
+- we've done something more in the code - we've tried to access the stackList property from outside the class immediately after the object has been created; we want to check the current length of the stack - have we succeeded?
+- When any class component has a name starting with two underscores (__), it becomes private - this means that it can be accessed only from within the class.
+- You cannot see it from the outside world. This is how Python implements the encapsulation concept.
+
+#### Defining a subclass :
+- The first step is easy: just define a new subclass pointing to the class which will be used as the superclass.
+```
+class AddingStack(Stack):
+    pass
+```
+- The class doesn't define any new component yet, but that doesn't mean that it's empty. It gets all the components defined by its superclass - the name of the superclass is written after the colon directly after the new class name.
+- Python forces you to explicitly invoke a superclass's constructor. Omitting this point will have harmful effects - the object will be deprived of the __stackList list. Such a stack will not function properly.
+- This is the only time you can invoke any of the available constructors explicitly - it can be done inside the superclass's constructor.
+
+Note the syntax:
+
+    - you specify the superclass's name (this is the class whose constructor you want to run)
+    - you put a dot (.)after it;
+    - you specify the name of the constructor;
+     - you have to point to the object (the class's instance) which has to be initialized by the constructor - this is why you have to specify the argument and use the self variable here; note: invoking any method (including constructors) from outside the class never requires you to put the self argument at the argument's list - invoking a method from within the class demands explicit usage of the self argument, and it has to be put first on the list.
+
+```
+class AddingStack(Stack):
+    def __init__(self):
+        Stack.__init__(self)
+        self.__sum = 0
+```
+
+
 
