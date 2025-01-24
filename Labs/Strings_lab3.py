@@ -1,10 +1,11 @@
+import sys
 input_string = input()
 shifts = int(input())
 output_string = ""
 
 if shifts > 25:
     print("Shifts must be less than or equal 25")
-    exit()
+    sys.exit()
 
 for char in input_string:
     if char == " ":

@@ -179,3 +179,5 @@
     \- At first glance, you may think that mod1 will be imported twice - fortunately, only the first import occurs. Python remembers the imported modules and silently omits all subsequent imports.
 
 28) If you're trying to find a character or string in another string use find() insted of index. It's safer - it doesn't generate an error for an argument containing a non-existent substring (it returns -1 then)
+
+29) If we're creating a method for class we should pass first parameter as ```self``` it is mandatory to get object's instance and class variables.
