@@ -13,7 +13,7 @@ elif (inputText == 'quit'):
     quit()
     print(YES)
 else:
-    exit()
+    sys.exit()
     print(YES)
 
 print(sys.argv[0])
