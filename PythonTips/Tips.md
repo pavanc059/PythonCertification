@@ -181,3 +181,10 @@
 28) If you're trying to find a character or string in another string use find() insted of index. It's safer - it doesn't generate an error for an argument containing a non-existent substring (it returns -1 then)
 
 29) If we're creating a method for class we should pass first parameter as ```self``` it is mandatory to get object's instance and class variables.
+30) To get one class attributes to another class through Inheritance we need to pass parent class name in parentheses next to class name Ex: class child(parent):  
+31) `__str__(self)` is the method used to override and print used defined object information like toString() method in java. when object is passed to print() function this function will be invoked.
+32) To implements multiple Inheritance we need to pass to parent class with comma seprated next to class name in parentheses Ex : class child(parent1, parent2):
+33) Python always scans for object property or method defination in order of 1) Object itself, 2) Immediate parent bottom up and 3) In multiple Inheritance left to right.
+34) `issubclass(ClassOne, ClassTwo)` The function returns True if ClassOne is a subclass of ClassTwo, and False otherwise.
+35) `isinstance(objectName, ClassName)` function returns True if objectName is instance of class or one of its subclass.
+36) `super()` function, which accesses the superclass without needing to know its name and which used invoke superclass
