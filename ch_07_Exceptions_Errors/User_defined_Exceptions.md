@@ -146,11 +146,43 @@ BaseException
    +---GeneratorExit
    +---SystemExit
    +---KeyboardInterrupt
-
-
 ```
+- The exceptions hierarchy is neither closed nor finished, and you can always extend it if you want or need to create your own world populated with your own exceptions.
+- It may be useful when you create a complex module which detects errors and raises exceptions, and you want the exceptions to be easily distinguishable from any others brought by Python.
+- This is done by defining your own, new exceptions as subclasses derived from predefined ones.
 
-# Custom exception classes that inherit from Exception base class
+`Note: if you want to create an exception which will be utilized as a specialized case of any built-in exception, derive it from just this one. If you want to build your own hierarchy, and don't want it to be closely connected to Python's exception tree, derive it from any of the top exception classes, like Exception.`
+
+```python
+class MyZeroDivisionError(ZeroDivisionError):	
+	pass
+
+def doTheDivision(mine):
+	if mine:
+		raise MyZeroDivisionError("some worse news")
+	else:		
+		raise ZeroDivisionError("some bad news")
+
+for mode in [False, True]:
+	try:
+		doTheDivision(mode)
+	except ZeroDivisionError:
+		print('Division by zero')
+
+
+for mode in [False, True]:
+	try:
+		doTheDivision(mode)
+	except MyZeroDivisionError:
+		print('My division by zero')
+	except ZeroDivisionError:
+		print('Original division by zero')
+```
+- The function is invoked four times in total, while the first two invocations are handled using only one except branch (the more general one) and 
+the last two ones with two different branches, able to distinguish the exceptions (don't forget: the order of the branches makes a fundamental difference!)
+
+```python
+#### Custom exception classes that inherit from Exception base class
 class InvalidAgeError(Exception):
     """Raised when age is not within valid range"""
     pass
@@ -170,3 +202,25 @@ class InvalidEmailError(Exception):
 class DuplicateEntryError(Exception):
     """Raised when trying to add duplicate entry"""
     pass
+```
+#### Building user defined exceptions
+```python
+class PizzaError(Exception):
+    def __init__(self, pizza, message):
+        Exception.__init__(message)
+        self.pizza = pizza	
+
+
+class TooMuchCheeseError(PizzaError):
+    def __init__(self, pizza, cheese, message):
+        PizzaError._init__(self, pizza, message)
+        self.cheese = cheese
+```
+
+- You can start building it by defining a general exception as a new base class for any other specialized exception. Like PizzaError
+`Note: we're going to collect more specific information here than a regular Exception does, so our constructor will take two arguments:`
+- one specifying a pizza as a subject of the process,
+- and one containing a more or less precise description of the problem.
+- we pass the second parameter to the superclass constructor, and save the first inside our own property.
+- A more specific problem (like an excess of cheese) can require a more specific exception. It's possible to derive the new class from the already defined PizzaError class.
+- The TooMuchCheeseError exception needs more information than the regular PizzaError exception, so we add it to the constructor - the name cheese is then stored for further processing.
