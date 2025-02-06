@@ -81,3 +81,128 @@ Fibi = Fibi-1 + Fibi-2
 - next, Python invokes the __iter__ method to get access to the actual iterator;
 - the __next__ method is invoked eleven times - the first ten times produce useful values, while the eleventh terminates the iteration.
 
+
+```python
+class Fib:
+	def __init__(self, nn):
+		self.__n = nn
+		self.__i = 0
+		self.__p1 = self.__p2 = 1
+
+	def __iter__(self):
+		print("Fib iter")
+		return self
+
+	def __next__(self):
+		self.__i += 1
+		if self.__i > self.__n:
+			raise StopIteration
+		if self.__i in [1, 2]:
+			return 1
+		ret = self.__p1 + self.__p2
+		self.__p1, self.__p2 = self.__p2, ret
+		return ret
+
+class Class:
+	def __init__(self, n):
+		self.__iter = Fib(n)
+
+	def __iter__(self):
+		print("Class iter")
+		return self.__iter;
+
+object = Class(8)
+
+for i in object:
+	print(i)
+```
+
+- The object of the class may be used as an iterator when (and only when) it positively answers to the `__iter__` invocation - this class can do it, and if it's invoked in this way, it provides an object able to obey the iteration protocol.
+
+#### yield keyword
+- The iterator protocol isn't particularly difficult to understand and use, but it is also indisputable that the protocol is rather inconvenient.The main discomfort it brings is the need to save the state of the iteration between subsequent `__iter__` invocations.
+- This is why Python offers a much more effective, convenient, and elegant way of writing iterators.The concept is fundamentally based on a very specific and powerful mechanism provided by the `yield` keyword.
+
+```python
+def fun(n):
+    for i in range(n):
+        return i
+
+#for loop has no chance to finish its first execution, as the return will break it irrevocably.	
+# repalcing return with yeild made this function as generator
+def fun(n):
+    for i in range(n):
+        yield i
+```
+- We've added yield instead of return. This little amendment turns the function into a generator, and executing the yield statement has some very interesting effects.
+- First of all, it provides the value of the expression specified after the yield keyword, just like return, but doesn't lose the state of the function.
+- All the variables' values are frozen, and wait for the next invocation, when the execution is resumed (not taken from scratch, like after return).
+- There is one important limitation: such a function should not be invoked explicitly as - in fact - it isn't a function anymore; it's a generator object. The invocation will return the object's identifier, not the series we expect from the generator.
+
+#### Building a generator
+```python
+def fun(n):
+    for i in range(n):
+        yield i
+
+for v in fun(5):
+    print(v)
+
+```
+What if you need a generator to produce the first n powers of 2?
+```python
+def powersOf2(n):
+    pow = 1
+    for i in range(n):
+        yield pow
+        pow *= 2
+
+for v in powersOf2(8):
+    print(v)
+
+t = [x for x in powersOf2(5)]
+```
+- Use yeild to store state vairables like pow in above example
+- Generators may also be used within list comprehensions. `t = [x for x in powersOf2(5)]` 
+- The list() function can transform a series of subsequent generator invocations into a real list. `t = list(powersOf2(3))`
+- list comprehension - a simple and very impressive way of creating lists and their contents.
+```python
+listOne = []
+
+for ex in range(6):
+    listOne.append(10 ** ex)
+
+
+listTwo = [10 ** ex for ex in range(6)]
+
+print(listOne)
+print(listTwo)
+
+#conditional expression
+lst = []
+
+for x in range(10):
+    lst.append(1 if x % 2 == 0 else 0)
+
+print(lst)
+
+```
+- conditional expression - a way of selecting one of two different values based on the result of a Boolean expression.
+```python
+lst = [1 if x % 2 == 0 else 0 for x in range(10)]
+```
+- Just one change can turn any comprehension into a generator. The brackets make a comprehension, the parentheses make a generator.
+```python
+lst = [1 if x % 2 == 0 else 0 for x in range(10)] # list 
+genr = (1 if x % 2 == 0 else 0 for x in range(10)) # generator
+
+for v in lst:
+    print(v, end=" ")
+print()
+
+for v in genr:
+    print(v, end=" ")
+print()
+```
+- Note: the same appearance of the output doesn't mean that both loops work in the same way. In the first loop, the list is created (and iterated through) as a whole - it actually exists when the loop is being executed.
+- In the second loop, there is no list at all - there are only subsequent values produced by the generator, one by one.
