@@ -187,4 +187,24 @@
 33) Python always scans for object property or method defination in order of 1) Object itself, 2) Immediate parent bottom up and 3) In multiple Inheritance left to right.
 34) `issubclass(ClassOne, ClassTwo)` The function returns True if ClassOne is a subclass of ClassTwo, and False otherwise.
 35) `isinstance(objectName, ClassName)` function returns True if objectName is instance of class or one of its subclass.
-36) `super()` function, which accesses the superclass without needing to know its name and which used invoke superclass
+36) `super()` function, which accesses the superclass without needing to know its name and which used invoke superclass.
+37) The `__repr__` method is a special method in Python used to define a string representation of the object. This method is particularly useful for debugging and logging.
+38) The `__iter__` method is another special method that makes the class iterable. This means you can use the class in a loop or any other context that requires an iterable. THis needs either `__next__` function to make it usable in any iteration context or yield
+```python
+class Test:
+    def __init__(self):
+        self.i = 0
+
+    def __iter__(self):
+        print('iter')
+        return self
+    
+    def __next__(self):
+        print(f'next {self.i}')
+        self.i += 1
+        if self.i > 5:
+            raise StopIteration
+
+for i in Test():
+    print(i)
+```
