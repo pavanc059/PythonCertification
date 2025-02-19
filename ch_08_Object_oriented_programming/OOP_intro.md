@@ -1,3 +1,16 @@
+# Introduction to Object-Oriented Programming
+
+This very important approach is present in most computer applications because it allows programmers to model entities representing real-life objects. Moreover, OOP allows programmers to model interactions between objects in order to solve real-life problems in an efficient, comfortable, extendable, and well-structured manner.
+
+- > class — an idea, blueprint, or recipe for an instance;
+- > instance — an instantiation of the class; very often used interchangeably with the term 'object';
+- > object — Python's representation of data and methods; objects could be aggregates of instances;
+- > attribute — any object or class trait; could be a variable or method;
+- > method — a function built into a class that is executed on behalf of the class or object; some say that it’s a 'callable attribute';
+- > type — refers to the class that was used to instantiate the object.
+
+
+
 ## Class
 - A class is like a recipe which can be used when you want to create a useful object (this is where the name of the approach comes from). You may produce as many objects as you  need to solve your problem.
 - Every object has a set of traits (they are called properties or attributes - we'll use both words synonymously) and is able to perform a set of activities (which are called methods).
@@ -12,6 +25,13 @@
  - An object has a name that uniquely identifies it within its home namespace (although there may be some anonymous objects, too)
  - An object has a set of individual properties which make it original, unique or outstanding (although it's possible that some objects may have no properties at all)
  - An object has a set of abilities to perform specific activities, able to change the object itself, or some of the other objects.
+
+#### What is an attribute
+An attribute is a capacious term that can refer to two major kinds of class traits:
+- Variables, containing information about the class itself or a class instance; classes and class instances can own many variables;
+- Methods, formulated as Python functions; they represent a behavior that could be applied to the object.
+- Each Python object has its own individual set of attributes. We can extend that set by adding new attributes to existing objects, change (reassign) them or control access to those attributes.
+- Class attributes are most often addressed with 'dot' notation, i.e., `<class>`dot`<attribute>`. The other way to access attributes (variables) it to use the getattr() and setattr() functions.
 
 #### Creating a class :
  - Object programming is the art of defining and expanding classes. A class is a model of a very specific part of reality, reflecting properties and activities found in the real world.
