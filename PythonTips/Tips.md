@@ -208,3 +208,20 @@ class Test:
 for i in Test():
     print(i)
 ```
+39) Every pyhton object has built-in property `__dict__` which lists the content of object.
+40) Class variables are shared variable across all the instances(Objects) of that class and instance variables is a local variable to that instance and not shared with other instances of same class. Note : You can access class variable using instance or using class see below but if we create instance variable of same name as calss variable then instance variable of same name as class variable will be masked by instance variable.
+```python
+class Demo:
+    class_var = "shared_variable"
+
+d1 = Demo()
+d2 = Demo()
+print(d1.class_var)
+#shared_variable
+print(Demo.class_var)
+#shared_variable
+d1.class_var = 'shadowing calss variable'
+print(d1.class_var)
+#shadowing calss variable
+
+```
