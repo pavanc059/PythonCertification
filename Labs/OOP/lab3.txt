@@ -1,0 +1,18 @@
+Estimated time
+
+30-60 minutes
+Level of difficulty
+
+Medium
+Objectives
+
+    improving the student's skills in operating with special methods
+
+Scenario
+
+    Create a class representing a time interval;
+    the class should implement its own method for addition, subtraction on time interval class objects;
+    the class should implement its own method for multiplication of time interval class objects by an integer-type value;
+    the __init__ method should be based on keywords to allow accurate and convenient object initialization, but limit it to hours, minutes, and seconds parameters;
+    the __str__ method should return an HH:MM:SS string, where HH represents hours, MM represents minutes and SS represents the seconds attributes of the time interval object;
+    check the argument type, and in case of a mismatch, raise a TypeError exception.

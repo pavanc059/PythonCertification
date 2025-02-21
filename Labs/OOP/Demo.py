@@ -1,12 +1,5 @@
-class Demo:
-    class_var = "shared_variable"
+number = 10
+print(number + 20)
 
-d1 = Demo()
-d2 = Demo()
-print(d1.class_var)
-#shared_variable
-print(Demo.class_var)
-#shared_variable
-d1.class_var = 'shadowing calss variable'
-print(d1.class_var)
-#shadowing calss variable
+number = 10
+print(number.__add__(20))
