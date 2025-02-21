@@ -749,6 +749,7 @@ Output :
 Multiple inheritance occurs when a class has more than one superclass.
 
 - Syntactically, such inheritance is presented as a comma-separated list of superclasses put inside parentheses after the new class name - just like here:
+- If your solution tends to require multiple inheritance, it might be a good idea to think about implementing composition.
 ```python
 class SuperA:
     varA = 10
@@ -874,6 +875,65 @@ doit from Two
 - The method, redefined in any of the superclasses, thus changing the behavior of the superclass, is called virtual.
 
 `Note: the situation in which the subclass is able to modify its superclass behavior is called polymorphism. The word comes from Greek (polys: "many, much" and morphe, "form, shape"), which means that one and the same class can take various forms depending on the redefinitions done by any of its subclasses.`
+
+##### MRO — Method Resolution Order
+The spectrum of issues possibly coming from multiple inheritance is illustrated by a classical problem named the diamond problem, or even the deadly diamond of death. The name reflects the shape of the inheritance diagram
+
+For say :
+- There is the top-most superclass named A;
+- There are two subclasses derived from A — B and C;
+- and there is also the bottom-most subclass named D, derived from B and C (or C and B, as these two variants mean different things in Python)
+![diamond_problem](diamond_problem.png)
+
+```python
+class A:
+    def info(self):
+        print('Class A')
+
+class B(A):
+    def info(self):
+        print('Class B')
+
+class C(A):
+    def info(self):
+        print('Class C')
+
+class D(C, B):
+    pass
+
+D().info()
+
+Output:
+Class C
+```
+`MRO can report definition inconsistencies when a subtle change in the class D definition is introduced, which is possible when you work with complex class hierarchies.`
+
+Imagine that you have changed the class D definition from:
+```python
+class D(B, C):
+    pass
+```
+to 
+```python
+class D(A, C):
+    pass
+
+output :
+Traceback (most recent call last):
+  File "diamond.py", line 13, in 
+    class D(A, C):
+TypeError: Cannot create a consistent method resolution order (MRO) for bases A, C
+```
+`This message informs us that the MRO algorithm had problems determining which method (originating from the A or C classes) should be called.`
+
+In the multiple inheritance scenario, any specified attribute is searched for first in the current class. If it is not found, the search continues into the direct parent classes in depth-first level (the first level above), from the left to the right, according to the class definition. This is the result of the MRO algorithm.
+- class D does not define the method info(), so Python has to look for it in the class hierarchy;
+- class D is constructed in this order:
+  - the definition of class B is fetched;
+  - the definition of class C is fetched;
+- Python finds the requested method in the class B definition and stops searching;
+- Python executes the method.
+
 
 #### Polymorphism 
 The situation in which the subclass is able to modify its superclass behavior is called polymorphism.
