@@ -938,6 +938,96 @@ In the multiple inheritance scenario, any specified attribute is searched for fi
 #### Polymorphism 
 The situation in which the subclass is able to modify its superclass behavior is called polymorphism.
 
+One way to carry out polymorphism is inheritance, when subclasses make use of base class methods, or override them. By combining both approaches, the programmer is given a very convenient way of creating applications, as:
+- most of the code could be reused and only specific methods are implemented, which saves a lot of development time and improves code quality;
+- the code is clearly structured;
+- there is a uniform way of calling methods responsible for the same operations, implemented accordingly for the types.
+- polymorphism is used when different class objects share conceptually similar methods (but are not always inherited)
+- polymorphism leverages clarity and expressiveness of the application design and development;
+- when polymorphism is assumed, it is wise to handle exceptions that could pop up.
+
+There are two main types of polymorphism in Python:
+
+1) Runtime Polymorphism (Method Overriding)
+   ```python
+   class Animal:
+    def speak(self):
+        pass
+
+    class Dog(Animal):
+        def speak(self):
+            return "Woof!"
+
+    class Cat(Animal):
+        def speak(self):
+            return "Meow!"
+
+    class Duck(Animal):
+        def speak(self):
+            return "Quack!"
+
+    # Creating objects
+    dog = Dog()
+    cat = Cat()
+    duck = Duck()
+
+    # Same method call, different behaviors
+    print(dog.speak())  # Output: Woof!
+    print(cat.speak())  # Output: Meow!
+    print(duck.speak()) # Output: Quack!
+   ```
+   `Duck typing` : Duck typing is another way of achieving polymorphism, and represents a more general approach than polymorphism achieved by inheritance. When we talk about inheritance, all subclasses are equipped with methods named the same way as the methods present in the superclass. 
+   - In duck typing, we believe that objects own the methods that are called. If they do not own them, then we should be prepared to handle exceptions.
+   ```python
+   # Duck Typing
+   class Car:
+    def move(self):
+        print("Car drives on road")
+
+    class Boat:
+        def move(self):
+            print("Boat sails on water")
+
+    class Plane:
+        def move(self):
+            print("Plane flies in air")
+
+    def journey(vehicle):
+        vehicle.move()
+
+    # Different objects can be passed
+    car = Car()
+    boat = Boat()
+    plane = Plane()
+
+    journey(car)   # Output: Car drives on road
+    journey(boat)  # Output: Boat sails on water
+    journey(plane) # Output: Plane flies in air
+
+   ```
+2) Compile-time Polymorphism (Method Overloading)
+   Operator Overloading
+   ```python
+   class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    
+    # there we're overloading objects __add__ method with Point implamantations
+    def __add__(self, other):
+        return Point(self.x + other.x, self.y + other.y)
+    
+    def __str__(self):
+        return f"Point({self.x}, {self.y})"
+
+    p1 = Point(1, 2)
+    p2 = Point(3, 4)
+    print(p1 + p2)  # Output: Point(4, 6)
+
+   ```
+
+- Liskov Substitution Principle (LSP) in detail. LSP is a fundamental principle that ensures proper use of inheritance and polymorphism. The principle states that objects of a superclass should be replaceable with objects of its subclasses without affecting the correctness of the program. In other words, subclasses should extend the base classes without changing their behavior.
+
 ```python
 import time
 
