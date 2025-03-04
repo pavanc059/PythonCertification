@@ -206,3 +206,6 @@ print()
 ```
 - Note: the same appearance of the output doesn't mean that both loops work in the same way. In the first loop, the list is created (and iterated through) as a whole - it actually exists when the loop is being executed.
 - In the second loop, there is no list at all - there are only subsequent values produced by the generator, one by one.
+
+### Get in details 
+[PEP 0789](https://peps.python.org/pep-0789/)
