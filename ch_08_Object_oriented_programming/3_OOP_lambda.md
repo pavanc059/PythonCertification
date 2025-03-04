@@ -103,3 +103,7 @@ print(data)
 print(filtered)
 ```
 Note: we've made use of the random module to initialize the random number generator (not to be confused with the generators we've just talked about) with the seed() function, and to produce five random integer values from -10 to 10 using the randint() function.
+
+
+### Get in detail
+[PEP 0312](https://peps.python.org/pep-0312/)
