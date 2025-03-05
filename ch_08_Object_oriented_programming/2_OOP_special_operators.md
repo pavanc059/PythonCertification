@@ -40,27 +40,52 @@ p2 = Person(35, 45, 55)
 
 print(p1 + p2)
 ```
+comparison Operators
+
 ![comparison Operators](comparison_operators.png)
+
 Numeric methods
+
 ![Unary Operators](Unary_operators.png)
+
 Common, binary operators and functions
+
 ![Binary Operators](binary_operators.png)
+
 Augumented operators and functions
+
 ![Augumented Operators](augumented_operators.png)
+
 Type conversion methods
-Python offers a set of methods responsible for the conversion of built-in data types. 
+
+Python offers a set of methods responsible for the conversion of built-in data types.
+
 ![Type conversion methods](type_conversion_methods.png)
+
 Object introspection
+
 Python offers a set of methods responsible for representing object details using ordinary strings.
+
 ![Object introspection](object_introspection.png)
+
 Object retrospection
+
 Following the topic of object introspection, there are methods responsible for object reflection.
+
 ![Object retrospection](object_retrospection.png)
+
 Object attribute access
+
 Access to object attributes can be controlled via the following magic methods
+
 ![Object attribute access](object_attribute.png)
+
 Methods allowing access to containers
-Containers are any object that holds an arbitrary number of other objects; containers provide a way to access the contained objects and to iterate over them. Container examples: list, dictionary, tuple, and set.
+
+Containers are any object that holds an arbitrary number of other objects; containers provide a way to access the contained objects and to iterate over them. Container 
+
+examples: list, dictionary, tuple, and set.
+
 ![Methods allowing access to containers](access_containers.png)
 
 The list of special methods built-in in Python contains more entities. For more information, refer to [Full list](https://docs.python.org/3/reference/datamodel.html#special-method-names.)
