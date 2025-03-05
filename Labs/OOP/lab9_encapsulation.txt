@@ -1,0 +1,27 @@
+Objectives
+
+    improving the student's skills in operating with the getter, setter, and deleter methods;
+    improving the student's skills in creating their own exceptions.
+
+Scenario
+
+    Implement a class representing an account exception,
+    Implement a class representing a single bank account,
+    This class should control access to the account number and account balance attributes by implementing the properties:
+        it should be possible to read the account number only, not change it. In case someone tries to change the account number, raise an alarm by raising an exception;
+        it should not be possible to set a negative balance. In case someone tries to set a negative balance, raise an alarm by raising an exception;
+        when the bank operation (deposit or withdrawal) is above 100.000, then additional message should be printed on the standard output (screen) for auditing purposes;
+        it should not be possible to delete an account as long as the balance is not zero;
+    test your class behavior by:
+        setting the balance to 1000;
+        trying to set the balance to -200;
+        trying to set a new value for the account number;
+        trying to deposit 1.000.000;
+        trying to delete the account attribute containing a non-zero balance.
+
+    Sandbox
+
+Code
+
+    Console
+
