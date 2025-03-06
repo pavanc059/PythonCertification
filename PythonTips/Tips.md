@@ -225,4 +225,31 @@ print(d1.class_var)
 #shadowing calss variable
 
 ```
-41) Generators to remember # TODO
+41) Generators are special functions that return an iterator object. Generators in python with yield statement may only be used inside functions. A function that contains a yield statement is called a generator function. A generator function is an ordinary function object in all respects. 
+
+You can create a function and replace the return statement with yeild and use the function to run in a loop with set of values.
+```python
+def countdown(n):
+    while n > 0:
+        yield n
+        n -= 1
+
+# Using the generator
+for number in countdown(5):
+    print(number)
+```
+42) Iterator Objects is regular python object(class instance) which implements `__iter__()` and `__next__()` methods which allows the objects to be used in for/in statements to loops. similar to Iterable interface in java.
+43) Special Operations on python objects example '+' operator can work between 2 objects by implementing `__add__()` method
+44) *args and **kwargs are spacal function paramaters that unpacks function positional paramaters and keywords paramaters.
+```python
+def funTest(*args):
+    print(f'args {args}')
+
+def funTest2(**kwargs):
+    print(f'Kayword args {kwargs}')
+#you cna pass any number of arguments which will be passed as tuple to function
+funTest(1, 2, 'test', 'xyz', 6)
+# similarly you can pass keyword argumants t
+funTest2(first=1, second=2)
+
+```
