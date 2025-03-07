@@ -1,0 +1,8 @@
+Objectives
+
+    improving the student's skills in operating with different kinds of exceptions.
+
+Scenario
+
+    Try to extend the check list script to handle more different checks, all reported as RocketNotReady exceptions.
+    Add your own checks for: batteries and circuits.
