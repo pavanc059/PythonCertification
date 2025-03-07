@@ -253,3 +253,4 @@ funTest(1, 2, 'test', 'xyz', 6)
 funTest2(first=1, second=2)
 
 ```
+45) To print full trace of exception you can use `format_tb()`  function from traceback module which returns list of strings describing the traceback or `print_tb()` function from traceback module
