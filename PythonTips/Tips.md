@@ -254,3 +254,4 @@ funTest2(first=1, second=2)
 
 ```
 45) To print full trace of exception you can use `format_tb()`  function from traceback module which returns list of strings describing the traceback or `print_tb()` function from traceback module
+46) To compare 2 variables are referring to same object we should use 'is' operator to compare values objects/variables holding use '=='
