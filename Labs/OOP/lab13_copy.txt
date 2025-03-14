@@ -1,0 +1,12 @@
+Objectives
+
+    improving the student's skills in creating classes representing candies;
+    improving the student's skills in operating with deepcopy() and copy.
+
+Scenario
+
+The previous task was a very easy one. Now let's rework the code a bit:
+
+    introduce the Delicacy class to represent a generic delicacy. The objects of this class will replace the old school dictionaries. Suggested attribute names: name, price, weight;
+    your class should implement the __str__() method to represent each object state;
+    experiment with the copy.copy() and deepcopy.copy() methods to see the difference in how each method copies objects .
