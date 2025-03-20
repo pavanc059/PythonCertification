@@ -255,3 +255,56 @@ funTest2(first=1, second=2)
 ```
 45) To print full trace of exception you can use `format_tb()`  function from traceback module which returns list of strings describing the traceback or `print_tb()` function from traceback module
 46) To compare 2 variables are referring to same object we should use 'is' operator to compare values objects/variables holding use '=='
+47) You can create a class without defining using `type(classname, (parentClass,), {attributes:values})` 
+
+example: 
+```python
+def bark(self):
+    print('Woof, woof')
+
+class Animal:
+    def feed(self):
+        print('It is feeding time!')
+
+Dog = type('Dog', (Animal, ), {'age':0, 'bark':bark})
+
+print('The class name is:', Dog.__name__)
+print('The class is an instance of:', Dog.__class__)
+print('The class is based on:', Dog.__bases__)
+print('The class attributes are:', Dog.__dict__)
+
+doggy = Dog()
+doggy.feed()
+doggy.bark()
+```
+48) Metaclasses usually implement these two methods (`__init__`, `__new__`), taking control of the procedure of creating and initializing a new class instance. Classes receive a new layer of logic.
+49) Using meta class you can equip any class with domain specific rules like all class by default it inherit from type/object class you can define meta class as base for new class
+example :
+```python
+def greetings(self):
+    print('Just a greeting function, but it could be something more serious like a check sum')
+
+class My_Meta(type):
+    def __new__(mcs, name, bases, dictionary):
+        if 'greetings' not in dictionary:
+            dictionary['greetings'] = greetings
+        obj = super().__new__(mcs, name, bases, dictionary)
+        return obj
+
+class My_Class1(metaclass=My_Meta):
+    pass
+
+class My_Class2(metaclass=My_Meta):
+    def greetings(self):
+        print('We are ready to greet you!')
+
+myobj1 = My_Class1()
+myobj1.greetings()
+myobj2 = My_Class2()
+myobj2.greetings()
+
+#output
+# Just a greeting function, but it could be something more serious like a check sum
+# We are ready to greet you!
+```
+50) 
