@@ -183,15 +183,39 @@
 29) If we're creating a method for class we should pass first parameter as ```self``` it is mandatory to get object's instance and class variables.
 30) Python instace variables are created by setting them to `self` parameter i.e : `self.instanceVariable`. same applies to private class variable you need insatnce to access it.
 31) You can create private instance variables by starting `__` double underscores dundor. If you want to access this instance private variable you have to access following way `instance._className__variableName`
-32) To get one class attributes to another class through Inheritance we need to pass parent class name in parentheses next to class name Ex: class child(parent):  
-33) `__str__(self)` is the method used to override and print used defined object information like toString() method in java. when object is passed to print() function this function will be invoked.
-34) To implements multiple Inheritance we need to pass to parent class with comma seprated next to class name in parentheses Ex : class child(parent1, parent2):
-35) Python always scans for object property or method defination in order of 1) Object itself, 2) Immediate parent bottom up and 3) In multiple Inheritance left to right.
-36) `issubclass(ClassOne, ClassTwo)` The function returns True if ClassOne is a subclass of ClassTwo, and False otherwise.
-37) `isinstance(objectName, ClassName)` function returns True if objectName is instance of class or one of its subclass.
-38) `super()` function, which accesses the superclass without needing to know its name and which used invoke superclass.
-39) The `__repr__` method is a special method in Python used to define a string representation of the object. This method is particularly useful for debugging and logging.
-40) The `__iter__` method is another special method that makes the class iterable. This means you can use the class in a loop or any other context that requires an iterable. THis needs either `__next__` function to make it usable in any iteration context or yield
+32) To get one class attributes to another class through Inheritance we need to pass parent class name in parentheses next to class name Ex: class child(parent):
+33) IF you want to make attribute absolute private you can do it by `@property`, `@.setter`, and `@.deleter` decorations if you delete  `@.setter` that will make attribute readonly
+Example:
+```python
+class Car:
+    def __init__(self, color, model, year):
+        self.color = color
+        self.model = model
+        self.year = year
+        self._voltage = 12
+
+    @property
+    def voltage(self):
+        return self._voltage
+
+    @voltage.setter
+    def voltage(self, volts):
+        print("Warning: this can cause problems!")
+        self._voltage = volts
+
+    @voltage.deleter
+    def voltage(self):
+        print("Warning: the radio will stop working!")
+        del self._voltage
+```
+34) `__str__(self)` is the method used to override and print used defined object information like toString() method in java. when object is passed to print() function this function will be invoked.
+35) To implements multiple Inheritance we need to pass to parent class with comma seprated next to class name in parentheses Ex : class child(parent1, parent2):
+36) Python always scans for object property or method defination in order of 1) Object itself, 2) Immediate parent bottom up and 3) In multiple Inheritance left to right.
+37) `issubclass(ClassOne, ClassTwo)` The function returns True if ClassOne is a subclass of ClassTwo, and False otherwise.
+38) `isinstance(objectName, ClassName)` function returns True if objectName is instance of class or one of its subclass.
+39) `super()` function, which accesses the superclass without needing to know its name and which used invoke superclass.
+40) The `__repr__` method is a special method in Python used to define a string representation of the object. This method is particularly useful for debugging and logging.
+41) The `__iter__` method is another special method that makes the class iterable. This means you can use the class in a loop or any other context that requires an iterable. THis needs either `__next__` function to make it usable in any iteration context or yield
 ```python
 class Test:
     def __init__(self):
