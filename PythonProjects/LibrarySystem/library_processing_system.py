@@ -41,33 +41,36 @@ if __name__ == "__main__":
     libraryatmain.add_publication(book4)
     libraryatmain.add_publication(book5)
 
-
     # Process borrowing
     libraryatmain.process_borrowing(member1, book1)
-    libraryatmain.process_borrowing(member2, book2)
+    libraryatmain.process_borrowing(member2, book2)    
     libraryatmain.process_borrowing(member1, book3)
     libraryatmain.process_borrowing(member2, book4)
-    libraryatmain.process_borrowing(member1, book5)
+   
     print('\n')
     print('=================  Members    ============================')
 
     # Display members
-    libraryatmain.display_members()
+    #libraryatmain.display_members()
     print('\n')
     print('====================   Publications =========================')
     
     # Display publications
-    libraryatmain.display_publications()
+    #libraryatmain.display_publications()
     print('\n')
     print('========================= Display what each member got  ====================')
 
     # Display what each member got
-    
     libraryatmain.display_report()
     print('\n')
+    
         
-   
+    #LibrarySystem.create_member(1)
+    libraryatmiami = LibrarySystem.create_library(1, 'Miami Library', 'Miami, FL', '305-555-5555', 'test@email.com')
 
+    print(libraryatmiami)
+
+    # Create a book
     # Create a library member
     # member1 = LibraryMember(1, 'John Doe', '123 Main St', '555-555-5555', '
 
