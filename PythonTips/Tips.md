@@ -209,13 +209,14 @@ class Car:
         del self._voltage
 ```
 34) `__str__(self)` is the method used to override and print used defined object information like toString() method in java. when object is passed to print() function this function will be invoked.
-35) To implements multiple Inheritance we need to pass to parent class with comma seprated next to class name in parentheses Ex : class child(parent1, parent2):
-36) Python always scans for object property or method defination in order of 1) Object itself, 2) Immediate parent bottom up and 3) In multiple Inheritance left to right.
-37) `issubclass(ClassOne, ClassTwo)` The function returns True if ClassOne is a subclass of ClassTwo, and False otherwise.
-38) `isinstance(objectName, ClassName)` function returns True if objectName is instance of class or one of its subclass.
-39) `super()` function, which accesses the superclass without needing to know its name and which used invoke superclass.
-40) The `__repr__` method is a special method in Python used to define a string representation of the object. This method is particularly useful for debugging and logging.
-41) The `__iter__` method is another special method that makes the class iterable. This means you can use the class in a loop or any other context that requires an iterable. THis needs either `__next__` function to make it usable in any iteration context or yield
+35) `@classmethod` : class methods are used to change the state of the class it works like a multiple arguments constructors. you can have only one `__init__()` method if we define more last defined `__init__()` method will override the behaviour. `@staticmethods` : are utility methods
+36) To implements multiple Inheritance we need to pass to parent class with comma seprated next to class name in parentheses Ex : class child(parent1, parent2):
+37) Python always scans for object property or method defination in order of 1) Object itself, 2) Immediate parent bottom up and 3) In multiple Inheritance left to right.
+38) `issubclass(ClassOne, ClassTwo)` The function returns True if ClassOne is a subclass of ClassTwo, and False otherwise.
+39) `isinstance(objectName, ClassName)` function returns True if objectName is instance of class or one of its subclass.
+40) `super()` function, which accesses the superclass without needing to know its name and which used invoke superclass.
+41) The `__repr__` method is a special method in Python used to define a string representation of the object. This method is particularly useful for debugging and logging.
+42) The `__iter__` method is another special method that makes the class iterable. This means you can use the class in a loop or any other context that requires an iterable. THis needs either `__next__` function to make it usable in any iteration context or yield
 ```python
 class Test:
     def __init__(self):
@@ -333,4 +334,23 @@ myobj2.greetings()
 # Just a greeting function, but it could be something more serious like a check sum
 # We are ready to greet you!
 ```
-50) 
+50) Do not use mutable objects like list, dictionary or set as default argument value. Default arguments are evaluated when the function is defined, not when it's called. You can see below issue items list is shared between to invocation 
+```python
+# Problematic code with mutable default argument
+def add_item(item, items=[]):  # BAD: mutable default argument
+    items.append(item)
+    return items
+
+print(add_item(1))  # Output: [1]
+print(add_item(2))  # Output: [1, 2]  <- Unexpected! We might expect [2]
+
+#Corrected code 
+def add_item(item, items=None):
+    items = items if items is not None else []   
+    items.append(item)
+    return items
+
+print(add_item(1))  # Output: [1]
+print(add_item(2))  # Output: [2]  <- Unexpected! We might expect [2]
+
+```
