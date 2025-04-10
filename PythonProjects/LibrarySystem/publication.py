@@ -37,3 +37,6 @@ class Publication(ABC):
     @abstractmethod
     def calculate_late_fee(self, days):
         pass
+
+    def __str__(self):
+        return f'Publication ID: {self.publication_id}, Title: {self.title}'

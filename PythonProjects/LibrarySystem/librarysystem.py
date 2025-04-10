@@ -43,6 +43,7 @@ class LibrarySystem():
         if not isinstance(publication, Publication):
             raise ValueError('publication must be a Publication object')        
         self.publications.append(publication)
+        return publication.publication_id, publication.title
 
     def process_borrowing(self, member, publication):
         if not isinstance(member, LibraryMember):
