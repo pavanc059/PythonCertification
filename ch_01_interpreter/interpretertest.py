@@ -16,6 +16,6 @@ else:
     sys.exit()
     print(YES)
 
-print(ascii('\u'))
+#print(ascii('\u'))
 
 print(sys.argv[0])
