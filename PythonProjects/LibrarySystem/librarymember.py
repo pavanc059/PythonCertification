@@ -39,7 +39,8 @@ class LibraryMember:
         self.__index += 1
         return f'Borrowed book : {item.title}'
     
-    
+    def __add__(self, other) -> List:
+        return [self, other]
     
         
 

@@ -31,15 +31,24 @@ if __name__ == "__main__":
     member1 = LibraryMember(1, 'John Bond', '123 Main St', '555-555-5555', 'john@test.com')
     member2 = LibraryMember(2, 'Stacy moss', '326 Lake dr', '555-555-7895', 'moss@test.com')
     
+
+    listOfmembers = member1 + member2
+    print(listOfmembers)
+
+    
+
     # Library system
     libraryatmain = LibrarySystem(1)
     libraryatmain.add_member(member1)
     libraryatmain.add_member(member2)
-    libraryatmain.add_publication(book1)
-    libraryatmain.add_publication(book2)
-    libraryatmain.add_publication(book3)
-    libraryatmain.add_publication(book4)
-    libraryatmain.add_publication(book5)
+
+    # libraryatmain.add_publication(book1)
+    # libraryatmain.add_publication(book2)
+    # libraryatmain.add_publication(book3)
+    # libraryatmain.add_publication(book4)
+    # libraryatmain.add_publication(book5)
+    addpublications = list(map(lambda book: libraryatmain.add_publication(book), [book1, book2, book3, book4, book5]))
+    print(f'Add publication {addpublications}')
 
     # Process borrowing
     libraryatmain.process_borrowing(member1, book1)
@@ -74,7 +83,8 @@ if __name__ == "__main__":
     # Create a library member
     # member1 = LibraryMember(1, 'John Doe', '123 Main St', '555-555-5555', '
 
-
+    print('========================= Display what each member End ====================')
+  
     
 
 

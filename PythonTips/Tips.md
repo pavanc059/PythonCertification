@@ -1,4 +1,4 @@
-1) By default Python uses UTF-8 encoding to change default encoding you need to insert below comment line with encoding scheem
+1) By default Python uses UTF-8 encoding to change default encoding you need to insert below comment line with encoding scheme
 
 # -*- coding: encoding -*
 
@@ -14,7 +14,7 @@
 6) print function concatenation if you want to print string and integer using print function like print("String" + integer) this would throw and error because we're adding string with integer you need to parse one of the value to make it work as below
 
    - print("String" + str(integer)) or you can pass multiple parameters to print function  as print("String", integer)
-7) Print function take multiple comma(',') seprated values and 'sep' argument to seprate between values and 'end' argument value to print at end print(value, ..., sep=' ', end='\n', file=sys.stdout, flush=False) Prints the values to a stream, or to sys.stdout by default. Optional keyword arguments:
+7) Print function take multiple comma(',') separated values and 'sep' argument to separate between values and 'end' argument value to print at end print(value, ..., sep=' ', end='\n', file=sys.stdout, flush=False) Prints the values to a stream, or to sys.stdout by default. Optional keyword arguments:
 
    - > file: a file-like object (stream); defaults to the current sys.stdout.
      >
@@ -101,7 +101,7 @@
     ```
 24) Bitwise operators are used to compare single bits of data **important** remark: the arguments of these operators must be integers; we must not use floats here.
 25) Formatting string 
-    * `r` - print as raw string (ex: print(r'test\ttest') will print test\ttest if you 'r' not spectified it will print as test test)
+    * `r` - print as raw string (ex: print(r'test\ttest') will print test\ttest if you 'r' not specified it will print as test test)
     * `f` - format the string to substitute any code variable into to print statement (ex: print(f'Print aby variable value {variable}'))
     * `b` - Represents a sequence of bytes rather than a string. Useful for binary data manipulation. 
 
@@ -117,7 +117,7 @@
     ```
 
 25. If you want to check the list's current length, you can use a function named `len()` (its name comes from  *length* )
-26. Python swapping withoout third variable
+26. Python swapping without third variable
 
     ```
     Other language like java 
@@ -169,7 +169,7 @@
 </details>
 
 
-26) .pyc comes from the words Python and compiled. File with extention .pyc is a compiled version of a module stored in pycache folder. When Python imports a module for the first time, it translates its contents into a somewhat compiled shape. The file doesn't contain machine code - it's internal Python semi-compiled code, ready to be executed by Python's interpreter. As such a file doesn't require lots of the checks needed for a pure source file, the execution starts faster, and runs faster, too.
+26) .pyc comes from the words Python and compiled. File with extension .pyc is a compiled version of a module stored in pycache folder. When Python imports a module for the first time, it translates its contents into a somewhat compiled shape. The file doesn't contain machine code - it's internal Python semi-compiled code, ready to be executed by Python's interpreter. As such a file doesn't require lots of the checks needed for a pure source file, the execution starts faster, and runs faster, too.
 
 27) Importing module 
 
@@ -178,10 +178,10 @@
     there is a main file containing the import mod1 and import mod2 instructions.
     \- At first glance, you may think that mod1 will be imported twice - fortunately, only the first import occurs. Python remembers the imported modules and silently omits all subsequent imports.
 
-28) If you're trying to find a character or string in another string use find() insted of index. It's safer - it doesn't generate an error for an argument containing a non-existent substring (it returns -1 then)
+28) If you're trying to find a character or string in another string use find() instead of index. It's safer - it doesn't generate an error for an argument containing a non-existent substring (it returns -1 then)
 
 29) If we're creating a method for class we should pass first parameter as ```self``` it is mandatory to get object's instance and class variables.
-30) Python instace variables are created by setting them to `self` parameter i.e : `self.instanceVariable`. same applies to private class variable you need insatnce to access it.
+30) Python instance variables are created by setting them to `self` parameter i.e : `self.instanceVariable`. same applies to private class variable you need insatnce to access it.
 31) You can create private instance variables by starting `__` double underscores dundor. If you want to access this instance private variable you have to access following way `instance._className__variableName`
 32) To get one class attributes to another class through Inheritance we need to pass parent class name in parentheses next to class name Ex: class child(parent):
 33) IF you want to make attribute absolute private you can do it by `@property`, `@.setter`, and `@.deleter` decorations if you delete  `@.setter` that will make attribute readonly
@@ -209,9 +209,9 @@ class Car:
         del self._voltage
 ```
 34) `__str__(self)` is the method used to override and print used defined object information like toString() method in java. when object is passed to print() function this function will be invoked.
-35) `@classmethod` : class methods are used to change the state of the class it works like a multiple arguments constructors. you can have only one `__init__()` method if we define more last defined `__init__()` method will override the behaviour. `@staticmethods` : are utility methods
-36) To implements multiple Inheritance we need to pass to parent class with comma seprated next to class name in parentheses Ex : class child(parent1, parent2):
-37) Python always scans for object property or method defination in order of 1) Object itself, 2) Immediate parent bottom up and 3) In multiple Inheritance left to right.
+35) `@classmethod` : class methods are used to change the state of the class it works like a multiple arguments constructors. you can have only one `__init__()` method if we define more last defined `__init__()` method will override the behavior. `@staticmethods` : are utility methods
+36) To implements multiple Inheritance we need to pass to parent class with comma separated next to class name in parentheses Ex : class child(parent1, parent2):
+37) Python always scans for object property or method definition in order of 1) Object itself, 2) Immediate parent bottom up and 3) In multiple Inheritance left to right.
 38) `issubclass(ClassOne, ClassTwo)` The function returns True if ClassOne is a subclass of ClassTwo, and False otherwise.
 39) `isinstance(objectName, ClassName)` function returns True if objectName is instance of class or one of its subclass.
 40) `super()` function, which accesses the superclass without needing to know its name and which used invoke superclass.
@@ -235,8 +235,8 @@ class Test:
 for i in Test():
     print(i)
 ```
-39) Every pyhton object has built-in property `__dict__` which lists the content of object.
-40) Class variables are shared variable across all the instances(Objects) of that class and instance variables is a local variable to that instance and not shared with other instances of same class. Note : You can access class variable using instance or using class see below but if we create instance variable of same name as calss variable then instance variable of same name as class variable will be masked by instance variable.
+39) Every python object has built-in property `__dict__` which lists the content of object.
+40) Class variables are shared variable across all the instances(Objects) of that class and instance variables is a local variable to that instance and not shared with other instances of same class. Note : You can access class variable using instance or using class see below but if we create instance variable of same name as class variable then instance variable of same name as class variable will be masked by instance variable.
 ```python
 class Demo:
     class_var = "shared_variable"
@@ -247,14 +247,14 @@ print(d1.class_var)
 #shared_variable
 print(Demo.class_var)
 #shared_variable
-d1.class_var = 'shadowing calss variable'
+d1.class_var = 'shadowing class variable'
 print(d1.class_var)
-#shadowing calss variable
+#shadowing class variable
 
 ```
 41) Generators are special functions that return an iterator object. Generators in python with yield statement may only be used inside functions. A function that contains a yield statement is called a generator function. A generator function is an ordinary function object in all respects. 
 
-You can create a function and replace the return statement with yeild and use the function to run in a loop with set of values.
+You can create a function and replace the return statement with yield and use the function to run in a loop with set of values.
 ```python
 def countdown(n):
     while n > 0:
@@ -267,22 +267,35 @@ for number in countdown(5):
 ```
 42) Iterator Objects is regular python object(class instance) which implements `__iter__()` and `__next__()` methods which allows the objects to be used in for/in statements to loops. similar to Iterable interface in java.
 43) Special Operations on python objects example '+' operator can work between 2 objects by implementing `__add__()` method
-44) *args and **kwargs are spacal function paramaters that unpacks function positional paramaters and keywords paramaters.
+44) *args and **kwargs are spacial function parameters that unpacks function positional parameters and keywords parameters.
 ```python
 def funTest(*args):
     print(f'args {args}')
 
 def funTest2(**kwargs):
-    print(f'Kayword args {kwargs}')
+    print(f'Keyword args {kwargs}')
 #you cna pass any number of arguments which will be passed as tuple to function
 funTest(1, 2, 'test', 'xyz', 6)
-# similarly you can pass keyword argumants t
+# similarly you can pass keyword arguments t
 funTest2(first=1, second=2)
 
 ```
-45) To print full trace of exception you can use `format_tb()`  function from traceback module which returns list of strings describing the traceback or `print_tb()` function from traceback module
-46) To compare 2 variables are referring to same object we should use 'is' operator to compare values objects/variables holding use '=='
-47) You can create a class without defining using `type(classname, (parentClass,), {attributes:values})` 
+45) ```lambda``` function are anonymous function with no definition. 
+    syntax : 
+    ```python 
+    lambda argument1, argument, ...: #body or logic
+    ```
+46) ```map()``` : map function takes first argument as function and second argument should be any iterator. map will apply function to all of the values in iterator. but this map only maps the function but to evaluate the function to values we need pass map to list --> list(map()) 
+    example :
+    ```python
+        map(lambda book: libraryatmain.add_publication(book), [book1, book2, book3, book4, book5]) # refer to LibrarySystem --> library_processing_system.py
+        #output Add publication <map object at 0x000001A906265720>
+        list(map(lambda book: libraryatmain.add_publication(book), [book1, book2, book3, book4, book5])) # refer to LibrarySystem --> library_processing_system.py)
+        #output Add publication [(1, 'Python Programming'), (2, 'Java Programming'), (3, 'C++ Programming'), (4, 'JavaScript Programming'), (5, 'HTML Programming')]
+    ```
+47) To print full trace of exception you can use `format_tb()`  function from traceback module which returns list of strings describing the traceback or `print_tb()` function from traceback module
+48) To compare 2 variables are referring to same object we should use 'is' operator to compare values objects/variables holding use '=='
+49) You can create a class without defining using `type(classname, (parentClass,), {attributes:values})` 
 
 example: 
 ```python
