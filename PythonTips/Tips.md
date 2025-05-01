@@ -293,9 +293,46 @@ funTest2(first=1, second=2)
         list(map(lambda book: libraryatmain.add_publication(book), [book1, book2, book3, book4, book5])) # refer to LibrarySystem --> library_processing_system.py)
         #output Add publication [(1, 'Python Programming'), (2, 'Java Programming'), (3, 'C++ Programming'), (4, 'JavaScript Programming'), (5, 'HTML Programming')]
     ```
-47) To print full trace of exception you can use `format_tb()`  function from traceback module which returns list of strings describing the traceback or `print_tb()` function from traceback module
-48) To compare 2 variables are referring to same object we should use 'is' operator to compare values objects/variables holding use '=='
-49) You can create a class without defining using `type(classname, (parentClass,), {attributes:values})` 
+47) Decorator functions are used to wrap any python function, class around. This wrapper function executes the actual function
+    example :
+    Following function has 3 level of wrapping if we need to capture arguments from actual function and also the arguments from wrapper.
+    If actual function has no arguments then 2 level or function with argument and wrapper don't have any arguments 
+
+    ```python
+        def warehouse_decorator(material):
+            def wrapper(our_function):
+                def internal_wrapper(*args):
+                    print('<strong>*</strong> Wrapping items from {} with {}'.format(our_function.__name__, material))
+                    our_function(*args)
+                    print()
+                return internal_wrapper
+            return wrapper
+
+        @warehouse_decorator('kraft')
+        def pack_books(*args):
+            print("We'll pack books:", args)
+
+        #output
+        #<strong>*</strong> Wrapping items from pack_books with kraft
+        #We'll pack books: ('Alice in Wonderland', 'Winnie the Pooh')
+
+        # 2 level with no argument function 
+        def warehouse_decorator(material):
+            def wrapper(our_function):       
+                    print('<strong>*</strong> Wrapping items from {} with {}'.format(our_function.__name__, material))
+                    return our_function                   
+            return wrapper
+
+        @warehouse_decorator('kraft')
+        def pack_books():
+            print("We'll pack books:")
+        #output
+        #<strong>*</strong> Wrapping items from pack_books with kraft
+        #We'll pack books:
+    ```
+48) To print full trace of exception you can use `format_tb()`  function from traceback module which returns list of strings describing the traceback or `print_tb()` function from traceback module
+49) To compare 2 variables are referring to same object we should use 'is' operator to compare values objects/variables holding use '=='
+50) You can create a class without defining using `type(classname, (parentClass,), {attributes:values})` 
 
 example: 
 ```python
