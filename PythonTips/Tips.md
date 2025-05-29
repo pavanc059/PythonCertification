@@ -265,7 +265,7 @@ def countdown(n):
 for number in countdown(5):
     print(number)
 ```
-Exmaple code : https://github.com/pavanc059/PythonCertification/blob/000caf85d6df65ec5e05fc9383a8ebc6e0edd4ca/Labs/OOP/Generators_learning.py#L25
+Exmaple code : https://github.com/pavanc059/PythonCertification/blob/000caf85d6df65ec5e05fc9383a8ebc6e0edd4ca/Labs/OOP/Generators_learning.py#L25-L58
 
 42) Iterator Objects is regular python object(class instance) which implements `__iter__()` and `__next__()` methods which allows the objects to be used in for/in statements to loops. similar to Iterable interface in java.
 43) Special Operations on python objects example '+' operator can work between 2 objects by implementing `__add__()` method
