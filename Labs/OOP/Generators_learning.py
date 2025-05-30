@@ -33,7 +33,7 @@ def fib():
     while True:
        
        a, b = b, a+b
-       yield b
+       (yield b)
 
 for i, number in enumerate(fib()):
     if i > 50:
@@ -56,3 +56,14 @@ print(next(fib))
 cProfile.run('sum([i * 2 for i in range(100000)])')
 
 cProfile.run('sum((i * 2 for i in range(100000)))')
+
+letters = ["A", "B", "C", "D", "E"]
+
+it = iter(letters)
+
+while True:
+    try:
+        letter = next(it)
+        print(letter)
+    except StopIteration:
+        break
