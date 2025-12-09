@@ -18,6 +18,8 @@ class Fib:
 		self.__p1, self.__p2 = self.__p2, ret
 		return ret
 
+for i in Fib(5):
+    print(i)
 class Class:
 	def __init__(self, n):
 		self.__iter = Fib(n)
@@ -25,7 +27,6 @@ class Class:
 	def __iter__(self):
 		print("Class iter")
 		return self.__iter;
-
 
 def fun(n):
     print('Function entered')
