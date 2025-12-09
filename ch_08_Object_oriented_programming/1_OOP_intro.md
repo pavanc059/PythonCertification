@@ -9,6 +9,18 @@ This very important approach is present in most computer applications because it
 - > method — a function built into a class that is executed on behalf of the class or object; some say that it’s a 'callable attribute';
 - > type — refers to the class that was used to instantiate the object.
 
+### The Four Pillars of OOP
+Object-Oriented Programming is built upon four main principles:
+
+1.  **Encapsulation**: The bundling of data (attributes) and the methods that operate on that data into a single unit, or "class". It restricts direct access to some of an object's components, which is a means of preventing accidental interference and misuse of the data.
+
+2.  **Inheritance**: A mechanism wherein a new class derives attributes and methods from an existing class. This promotes code reusability and establishes a hierarchical relationship between classes.
+
+3.  **Polymorphism**: The ability of an object to take on many forms. The most common use of polymorphism in OOP occurs when a parent class reference is used to refer to a child class object. It allows for a single interface to represent different underlying forms (data types).
+
+4.  **Abstraction**: The concept of hiding the complex implementation details and showing only the essential features of the object. It helps in managing complexity by allowing us to focus on what an object does instead of how it does it.
+
+These concepts will be explored in detail in the following sections.
 
 
 ## Class
@@ -199,11 +211,11 @@ output :
 
 {}
 
-- changing the assignment to self.varia = val 
+- **Case 1: `self.varia = val`**
 class ExampleClass:
     varia = 1
     def __init__(self, val):
-        self.varia = val
+        self.varia = val # This creates an instance variable named 'varia'
 
 print(ExampleClass.__dict__)
 
@@ -222,11 +234,11 @@ Output :
 1
 
 
-- changing the assignment to varia = val
+- **Case 2: `varia = val`**
 class ExampleClass:
     varia = 1
     def __init__(self, val):
-        varia = val
+        varia = val # This creates a local variable 'varia' within the __init__ method
 
 print(ExampleClass.__dict__)
 
@@ -808,7 +820,7 @@ class Left:
 
 
 class Right:
-    var = "R"
+    var = "R" # Also defines var and fun()
     varRight = "RR"
     def fun(self):
         return "Right"
@@ -824,7 +836,7 @@ print(obj.var, obj.varLeft, obj.varRight, obj.fun())
 Output:
 L LL RR Left
 
-class Sub(Right, Left):
+class Sub(Right, Left): # The order is now Right, then Left
     pass
 
 
@@ -840,11 +852,11 @@ R LL RR Right
 
 This is clear. But where does var come from? Is it possible to guess it? The same problem is encountered with the fun() method - will it be invoked from Left or from Right?
 
-We can say that Python looks for object components in the following order:
+We can say that Python looks for object components in the following order (this is a simplified view of MRO):
 
     - Inside the object itself;
     - In its superclasses, from bottom to top;
-    - If there is more than one class on a particular inheritance path, Python scans them from left to right.
+    - If there is more than one class on a particular inheritance path (multiple inheritance), Python scans them from left to right based on the order they are listed in the class definition.
 
 ```python
 class One:
