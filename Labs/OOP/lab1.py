@@ -19,6 +19,10 @@ class Mobile:
     def call(self,number):
         '''Call the number'''
         return print(f'calling {number}')
+    
+    def __internal_allow_call(self, number):
+        '''Internal method to check if the call can be made'''
+        return True
 
 phone1 = Mobile('4696577578')
 phone2 = Mobile('3434342243')
@@ -28,3 +32,5 @@ phone2.turn_on()
 phone1.call('85413212646')
 phone1.turn_off()
 phone2.turn_off()
+
+

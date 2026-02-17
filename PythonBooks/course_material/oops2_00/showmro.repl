@@ -1,0 +1,6 @@
+>>> from mro import D
+>>> d = D()
+>>> d.method()
+B.method()
+>>> D.__mro__
+(<class 'mro.D'>, <class 'mro.B'>, <class 'mro.C'>, <class 'mro.A'>, <class 'object'>)

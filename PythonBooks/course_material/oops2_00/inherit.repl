@@ -1,0 +1,13 @@
+>>> from aircraft import AirCraft
+>>> zeppelin = AirCraft("Luftschiff", "LZ 129")
+>>> zeppelin.make
+'Luftschiff'
+>>> zeppelin.takeoff()
+Taking off
+>>> from aircraft import Plane
+>>> tomcat = Plane("Grumman", "F14", 2)
+>>> tomcat.model
+'F14'
+>>> tomcat.takeoff()
+Taking off
+Gear up

@@ -1,0 +1,23 @@
+>>> from enum import Enum
+>>> class Weekend(Enum):
+...     SATURDAY = 1
+...     SUNDAY = 2
+...
+>>> Weekend.SATURDAY
+<Weekend.SATURDAY: 1>
+>>> Weekend.SATURDAY = 5
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/enum.py", line 835, in __setattr__
+    raise AttributeError('cannot reassign member %r' % (name, ))
+AttributeError: cannot reassign member 'SATURDAY'
+>>> list(Weekend)
+[<Weekend.SATURDAY: 1>, <Weekend.SUNDAY: 2>]
+>>> Weekend(1)
+<Weekend.SATURDAY: 1>
+>>> Weekend["SUNDAY"]
+<Weekend.SUNDAY: 2>
+>>> Weekend.SATURDAY.name
+'SATURDAY'
+>>> Weekend.SATURDAY.value
+1

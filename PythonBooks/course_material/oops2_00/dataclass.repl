@@ -1,0 +1,22 @@
+>>> from dataclasses import dataclass
+>>> @dataclass
+... class Point:
+...     x: int
+...     y: int | float
+...
+>>> p = Point(3, 4)
+>>> p.x
+3
+>>> p.y
+4
+>>> from dataclasses import astuple
+>>> astuple(p)
+(3, 4)
+>>> q = Point(4, 5)
+>>> p == q
+False
+>>> p == p
+True
+>>> r = Point(3, 4)
+>>> p == r
+True

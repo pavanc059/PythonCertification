@@ -1,0 +1,17 @@
+>>> class ObjectCounter:
+...     num_instances = 0
+...     def __init__(self):
+...         ObjectCounter.num_instances += 1
+...
+>>> one = ObjectCounter()
+>>> one
+<__main__.ObjectCounter object at 0x10fee4350>
+>>> one.num_instances
+1
+>>> two = ObjectCounter()
+>>> two.num_instances
+2
+>>> one.num_instances
+2
+>>> ObjectCounter.num_instances
+2
