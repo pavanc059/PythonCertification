@@ -1,0 +1,21 @@
+>>> from vehicle import Vehicle
+>>> boat = Vehicle.water_vehicle("Minnow", (30, 40, 10))
+>>> boat.name
+'Minnow'
+>>> boat.num_wheels
+0
+>>> boat.volume()
+12000
+>>> car = Vehicle.road_vehicle("Kitt", (4, 3, 1.5), 4)
+>>> car.name
+'Kitt'
+>>> car.num_wheels
+4
+>>> car.volume()
+18.0
+>>> Vehicle.all_float(boat)
+True
+>>> Vehicle.all_float(boat, boat)
+True
+>>> Vehicle.all_float(boat, boat, car)
+False

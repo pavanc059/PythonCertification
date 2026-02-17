@@ -35,6 +35,7 @@ class TestStringMethods(unittest.TestCase):
 
     def test_findGivenStringisASCII(self):
         self.assertEqual(validationUtilities.findGivenStringisASCII("test", True), True)
+        self.assertEqual(validationUtilities.findGivenStringisASCII("test", False), False)
 
 if __name__ == '__main__':
     unittest.main()

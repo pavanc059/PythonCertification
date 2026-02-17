@@ -1,0 +1,8 @@
+>>> from flyingcar import FlyingCar
+>>> vroom = FlyingCar("Hanna-Barbera", "Space Car")
+>>> vroom.start()
+Starting engine
+>>> vroom.drive()
+Driving
+>>> vroom.fly()
+Flying

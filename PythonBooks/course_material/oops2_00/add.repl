@@ -1,0 +1,7 @@
+>>> from vector import Vector
+>>> a = Vector(3, 4)
+>>> a
+Vector(3, 4)
+>>> b = Vector(5, 6)
+>>> a + b
+Vector(8, 10)

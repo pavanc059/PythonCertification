@@ -1,0 +1,12 @@
+>>> import math
+>>> def circle_area(radius):
+...     return math.pi * pow(radius, 2)
+...
+>>> circle_area(3)
+28.274333882308138
+>>> circle = {
+...     "radius": 3,
+...     "color": "blue"
+... }
+>>> circle_area(circle["radius"])
+28.274333882308138

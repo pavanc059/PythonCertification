@@ -1,0 +1,13 @@
+>>> from shapes import Circle, Rectangle
+>>> circle = Circle(3, "blue")
+>>> circle.__dict__
+{'radius': 3, 'color': 'blue'}
+>>> vars(circle)
+{'radius': 3, 'color': 'blue'}
+>>> Circle.__dict__
+mappingproxy({'__module__': 'shapes', '__init__': <function Circle.__init__ at 0x1027727a0>, '__doc__': None})
+>>> circle.to_json()
+'{"radius": 3, "color": "blue"}'
+>>> rect = Rectangle(4, 5, "green")
+>>> rect.to_json()
+'{"length": 4, "width": 5, "color": "green"}'

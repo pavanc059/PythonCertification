@@ -1,0 +1,21 @@
+>>> from employee import Employee
+>>> Employee.company
+'Sapkowski, Inc.'
+>>> geralt = Employee("Geralt of Rivia", "1986-12-01")
+>>> geralt
+Employee(name="Geralt of Rivia", birth_date="1986-12-01")
+>>> print(geralt)
+Geralt of Rivia is 36 years old
+>>> geralt.compute_age()
+36
+>>> geralt.company
+'Sapkowski, Inc.'
+>>> data = {
+...     "name": "Yennefer of Vengerberg",
+...     "birth_date": "1993-01-31",
+... }
+>>> yen = Employee.from_dict(data)
+>>> yen
+Employee(name="Yennefer of Vengerberg", birth_date="1993-01-31")
+>>> print(yen)
+Yennefer of Vengerberg is 30 years old

@@ -1,0 +1,20 @@
+>>> import math
+>>> class Circle:
+...     def __init__(self, radius):
+...         self.radius = radius
+...     def area(self):
+...         return math.pi * pow(self.radius, 2)
+...
+>>> small = Circle(3)
+>>> small.radius
+3
+>>> small.area()
+28.274333882308138
+>>> large = Circle(42)
+>>> large.radius
+42
+>>> large.area()
+5541.769440932395
+>>> large.radius = 85
+>>> large.area()
+22698.006922186254

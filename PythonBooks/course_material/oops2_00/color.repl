@@ -1,0 +1,11 @@
+>>> from abcshape import Circle
+>>> circle = Circle(3, 106, 50, 159)
+>>> circle.get_area()
+28.274333882308138
+>>> circle.hex_color()
+'#6a329f'
+>>> from abcshape import Square
+>>> s = Square(255, 255, 255)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: Can't instantiate abstract class Square with abstract method get_area
