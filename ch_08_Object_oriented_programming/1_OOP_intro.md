@@ -350,6 +350,9 @@ True
 - There is one fundamental requirement a method is obliged to have at least one parameter (there are no such thing as parameterless methods a method may be invoked without an argument, but not declared without parameters).
 - The first (or only) parameter is usually named ```self``` we need to use same name as first parameter.
 - The name self suggests the parameter's purpose - it identifies the object for which the method is invoked.
+
+![Method Types](types_methods.png)
+
 ```python
 class Classy:
     def method(self):
