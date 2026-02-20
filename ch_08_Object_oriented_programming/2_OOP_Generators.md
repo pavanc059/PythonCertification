@@ -1,11 +1,14 @@
 # Generators
+
 A Python generator is a piece of specialized code able to produce a series of values, and to control the iteration process. This is why generators are very often called iterators, and although some may find a very subtle distinction between these two, we'll treat them as one.
 
 - The range() function is, in fact, a generator, which is (in fact, again) an iterator.
 - A function returns one, well-defined value - it may be the result of a more or less complex evaluation of, e.g., a polynomial, and is invoked once - only once.
+- A generator returns a series of values, and in general, is (implicitly) invoked more than once. Ex: the range() generator is invoked six times, providing five subsequent values from zero to four, and finally signaling that the series is complete.
+- A function returns one, well-defined value - it may be the result of a more or less complex evaluation of, e.g., a polynomial, and is invoked once - only once.
 - A generator returns a series of values, and in general, is (implicitly) invoked more than once. Ex : the range() generator is invoked six times, providing five subsequent values from zero to four, and finally signaling that the series is complete.
 
-#### Creating custom generator class
+## Creating custom generator class
 
 The iterator protocol is a way in which an object should behave to conform to the rules imposed by the context of the `for` and `in` statements. An object conforming to the iterator protocol is called an iterator.
 
@@ -22,11 +25,11 @@ class Fib:
 		self.__p1 = self.__p2 = 1
 
 	def __iter__(self):
-		print("__iter__")		
+		print("__iter__")        
 		return self
 
 	def __next__(self):
-		print("__next__")				
+		print("__next__")                
 		self.__i += 1
 		if self.__i > self.__n:
 			raise StopIteration

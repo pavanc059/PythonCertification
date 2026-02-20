@@ -56,18 +56,5 @@ class Pizza():
     def __str__(self):
         return f'{self.size} pizza with {", ".join(self.toppings)} and price ${self.price:.2f}'
   
-    
- 
-veggie_pizza =  Pizza(14, ["jalapenos","cheese"]) # instantiation and initialization
-veggie_pizza._Pizza__allowed_sizes.append(20) # Access class attribute and motify it (class attribute is modified)
-print(veggie_pizza._Pizza__allowed_sizes) # Access class attribute (class attribute is accessed) using instance._classname__attributename
-veggie_pizza.extra_cheese = True # Setting property method
-veggie_pizza.price = 35 # Setting property method to trigger price calculation
-print(dir(veggie_pizza.calculate_price)) # Accessing instance attributes using __dict__
-print(veggie_pizza.describe_pizza())
-#veggie_pizza.base_price = 12 # Setting instance attribute
-print(veggie_pizza.extra_cheese) # Accessing property method
-
-print(veggie_pizza.describe_pizza())
 
 
