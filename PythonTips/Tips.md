@@ -184,7 +184,7 @@
 30) Python instance variables are created by setting them to `self` parameter i.e : `self.instanceVariable`. same applies to private class variable you need insatnce to access it.
 31) You can create private instance variables by starting `__` double underscores dundor. If you want to access this instance private variable you have to access following way `instance._className__variableName` this works for both attributes and methods.
 32) To get one class attributes to another class through Inheritance we need to pass parent class name in parentheses next to class name Ex: class child(parent):
-33) IF you want to make attribute absolute private you can do it by `@property`, `@.setter`, and `@.deleter` decorations if you delete  `@.setter` that will make attribute readonly
+33) IF you want to make attribute absolute private you can do it by `@property`, `@.setter`, and `@.deleter` decorations if you delete  `@.setter` that will make attribute readonly. If you're implementing overriding these methods from parent class both getter and setter needs to be implemented. Implementing one method will not delegate access to parent. example if you override the property method you can not access setter method without defining setter in child 
 Example:
 ```python
 class Car:
