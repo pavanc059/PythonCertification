@@ -24,4 +24,78 @@ if __name__ == "__main__":
     print(f'veggie_pizza.extra_cheese: {veggie_pizza.extra_cheese}\n') # Accessing property method
     print(f'veggie_pizza.describe_pizza(): {veggie_pizza.describe_pizza()}\n')
 
+    print(f"\n_____________ Creating Iterator and iterable using special functions __________\n")
+
+    #Iterable example 
+    from special_functions.iterators_iterables import Person, PersonList, Fibonacci, PersonIterable
+
+    for i in Fibonacci(50):
+        print(i)
+
+    persons_iterator = PersonList(Person("Joy", 35), Person("Kyle", 34), Person("Alison",20), Person("Jacob", 30))
+
+    for p in persons_iterator:
+        print(p)
+
+    persons_iterable = PersonIterable(Person("Neal", 35), Person("Sony", 34), Person("Gary",20), Person("Ted", 30)) # iterable doesn't implement next method
+
+    for p in persons_iterable:
+        print(p)
+
+    # print(persons_iterable[0:2]) this would give error because persons_iterable is not a sequence or mapping
+
+    print("\n_____________ Creating sequence and mapping using special functions __________\n")
     
+    from special_functions.sequences_mappings import OnlineBooksCatalog
+
+    online_books = OnlineBooksCatalog()
+    print(online_books[0:10])
+    print(f'Contains check : {"Don Quixote" in online_books}')
+    print(f'Length of online_books: {len(online_books)}')
+    
+    print("\n_____________ Class attributes and Properties __________\n")
+    
+    from objects_classes_attributes.getters_setters import Car
+    car1 = Car("Toyota", "Camry")
+    print(f'car1 make: {car1.get_make()}') # Accessing make
+    print(f'car1 model: {car1.get_model()}') # Accessing model
+    car1.set_make("Honda") # Modifying make
+    car1.set_model("Civic") # Modifying model
+    print(f'car1 make after modification: {car1.get_make()}')
+    print(f'car1 model after modification: {car1.get_model()}')
+
+    from objects_classes_attributes.getters_setters import Vehicle, LandVehicle
+    vehicle1 = Vehicle("Car", 4)
+    print(f'vehicle1 type: {vehicle1.type}') # Accessing type using property
+    print(f'vehicle1 number of wheels: {vehicle1.number_of_wheels}') # Accessing number_of_wheels using property
+    vehicle1.type = "Truck" # Modifying type using property setter
+    vehicle1.number_of_wheels = 6 # Modifying number_of_wheels using property
+    print(f'vehicle1 type after modification: {vehicle1.type}')
+    print(f'vehicle1 number of wheels after modification: {vehicle1.number_of_wheels}')
+
+    land_vehicle1 = LandVehicle("SUV", 4, "Off-road")
+    print(f'land_vehicle1 type: {land_vehicle1.type}') # Accessing type
+    print(f'land_vehicle1 terrain: {land_vehicle1.terrain}') # Accessing terrain
+    #land_vehicle1.type = "Crossover" # Modifying type using property setter
+    #print(f'land_vehicle1 type after modification: {land_vehicle1.type}')
+    #Above statement would give error because terrain property doesn't have setter method defined.
+    # even type setter is part for parent it is not accessible in child class because it is overridden by type property in child class which doesn't have setter method defined. 
+    # This is an example of how properties can control access to attributes and how inheritance can affect property access.
+    # Traceback (most recent call last):
+    # land_vehicle1.type = "Crossover" # Modifying type using property setter
+    # ^^^^^^^^^^^^^^^^^^
+    # AttributeError: property 'type' of 'LandVehicle' object has no setter
+
+    print('\n Using descriptors to control access to attributes \n')
+    from objects_classes_attributes.getters_setters import PizzaSizes, Shape
+
+    pizza1 = PizzaSizes(14) # Creating pizza instance with size 25
+    print(f'Pizza size: {pizza1.size}') # Accessing size using descriptor
+    pizza1.size = 20 # Modifying size using descriptor setter
+
+    circle = Shape("Circle", 1) # Creating shape instance with shape "Circle"
+    print(f'Shape: {circle.name}, Radius: {circle.no_of_sides}') # Accessing shape and radius using descriptor
+    triangle = Shape("Triangle", 3) # Creating shape instance with shape "Triangle"
+    print(f'Shape: {triangle.name}, Sides: {triangle.no_of_sides}') #
+    triangle.no_of_sides = 4 # Modifying sides using descriptor setter
+    print(f'Shape: {triangle.name}, Sides after modification: {triangle.no_of_sides}') # Accessing sides after modification using descriptor
