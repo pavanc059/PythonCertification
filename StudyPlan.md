@@ -26,16 +26,16 @@ The exam consists of five sections:
 
 **Objectives covered by the block (15 exam items)**
 
-### PCPP-32-101 1.1 – Understand and explain the basic terms and programming concepts used in the OOP paradigm
+### PCPP-32-101 1.1 – Understand and explain the basic terms and programming concepts used in the OOP paradigm - completed
 
 - Essential terminology: class, instance, object, attribute, method, type, instance and class variables, superclasses and subclasses
 - Reflexion: `isinstance()`, `issubclass()`
 - The `__init__()` method
 - Creating classes, methods, and class and instance variables; calling methods; accessing class and instance variables
 
-### PCPP-32-101 1.2 – Perform Python core syntax operations
+### PCPP-32-101 1.2 – Perform Python core syntax operations - completed
 
-- Python core syntax expressions – magic methods:
+- Python core syntax expressions – magic methods [Magic Methods](https://realpython.com/courses/magic-methods-classes/):
   - Comparison methods (e.g. `__eq__(self, other)`, `__lt__`, `__le__`, `__gt__`, `__ge__`, `__ne__`)
   - Numeric methods (e.g. `__abs__(self)`, `__add__`, `__sub__`, `__mul__`, `__truediv__`, `__floordiv__`, `__mod__`, `__pow__`)
   - Type conversion methods (e.g. `__int__`, `__float__`, `__str__`, `__bool__`)
@@ -45,10 +45,10 @@ The exam consists of five sections:
   - Context managers (e.g. `__enter__`, `__exit__`)
   - Callable objects (e.g. `__call__`)
   - Hashing and comparison (e.g. `__hash__`)
-- Operating with special methods
+- Operating with special methods [Operator overloading/ method overloading](https://realpython.com/operator-function-overloading/)
 - Extending class implementations to support additional core syntax operations
 
-### PCPP-32-101 1.3 – Understand and use the concepts of inheritance, polymorphism, and composition
+### PCPP-32-101 1.3 – Understand and use the concepts of inheritance, polymorphism, and composition - not started
 
 - Class hierarchies
 - Single vs. multiple inheritance
@@ -60,7 +60,9 @@ The exam consists of five sections:
 - Modelling real-life problems using the "is a" and "has a" relations
 - Mixins and their usage patterns
 
-### PCPP-32-101 1.4 – Understand the concept of extended function argument syntax and demonstrate proficiency in using decorators
+[All above concepts](https://realpython.com/courses/inheritance-composition-python/)
+
+### PCPP-32-101 1.4 – Understand the concept of extended function argument syntax and demonstrate proficiency in using decorators - not started
 
 - Special identifiers: `*args`, `**kwargs`
 - Forwarding arguments to other functions
@@ -74,18 +76,20 @@ The exam consists of five sections:
 - Special methods: `__call__`, `__init__`
 - `functools.wraps` for preserving function metadata
 - Parameterized decorators
+  
+[All above concepts](https://realpython.com/learning-paths/functional-programming/)
 
-### PCPP-32-101 1.5 – Design, build, and use Python static and class methods
+### PCPP-32-101 1.5 – Design, build, and use Python static and class methods - In-complete
 
 - Implementing class and static methods
 - Class vs. static methods
 - The `cls` parameter
-- The `@classmethod` and `@staticmethod` decorators
+- The `@classmethod` and `@staticmethod` decorators [Methods](https://realpython.com/courses/python-method-types/)
 - Class methods: accessing and modifying the state/methods of a class, creating objects
 - Alternative constructors using class methods
-- Factory patterns with class methods
+- Factory patterns with class methods ([Implementing the Factory Method Pattern](https://realpython.com/courses/factory-method-pattern/))
 
-### PCPP-32-101 1.6 – Understand and use Python abstract classes and methods
+### PCPP-32-101 1.6 – Understand and use Python abstract classes and methods - In-complete
 
 - Abstract classes and abstract methods: defining, creating, and implementing abstract classes and abstract methods
 - The `abc` module: `ABC`, `abstractmethod`, `abstractproperty`
@@ -94,8 +98,10 @@ The exam consists of five sections:
 - Delivering multiple child classes
 - Abstract properties and static methods
 - Interface design using abstract base classes
+  
+[Above topics brush up](https://realpython.com/courses/python-class-inheritance/)
 
-### PCPP-32-101 1.7 – Understand and use the concept of attribute encapsulation
+### PCPP-32-101 1.7 – Understand and use the concept of attribute encapsulation - completed
 
 - Definition, meaning, usage
 - Name mangling with double underscore prefix
@@ -105,15 +111,19 @@ The exam consists of five sections:
 - Property objects and descriptors
 - Read-only and write-only properties
 
-### PCPP-32-101 1.8 – Understand and apply the concept of subclassing built-in classes
+[Above topic complete reference](https://realpython.com/courses/property-python/)
+
+### PCPP-32-101 1.8 – Understand and apply the concept of subclassing built-in classes - not started 
 
 - Inheriting properties from built-in classes
 - Using the concept of subclassing the built-ins to extend class features and modify class methods and attributes
 - Subclassing `list`, `dict`, `str`, `int`, and other built-ins
 - Overriding built-in methods
 - `collections.UserDict`, `collections.UserList`, `collections.UserString` as alternatives
+  
+[Above topic completed refernce ](https://realpython.com/learning-paths/classic-data-structures-and-algorithms-with-python/)
 
-### PCPP-32-101 1.9 – Demonstrate proficiency in the advanced techniques for creating and serving exceptions
+### PCPP-32-101 1.9 – Demonstrate proficiency in the advanced techniques for creating and serving exceptions - not started 
 
 - Exceptions as objects, named attributes of exception objects, basic terms and concepts
 - Creating custom exception classes
@@ -125,7 +135,9 @@ The exam consists of five sections:
 - Exception groups (Python 3.11+)
 - Best practices for exception handling
 
-### PCPP-32-101 1.10 – Demonstrate proficiency in performing shallow and deep copy operations
+[Above topics complete reference](https://realpython.com/learning-paths/exception-handling-logging-debugging/)
+
+### PCPP-32-101 1.10 – Demonstrate proficiency in performing shallow and deep copy operations - not started 
 
 - Shallow and deep copies of objects
 - Object: label vs. identity vs. value
@@ -135,7 +147,9 @@ The exam consists of five sections:
 - Customizing copy behavior with `__copy__` and `__deepcopy__`
 - Mutable vs. immutable objects in copying
 
-### PCPP-32-101 1.11 – Understand and perform (de)serialization of Python objects
+[Above topics reference](https://realpython.com/courses/deep-vs-shallow-copies/)
+
+### PCPP-32-101 1.11 – Understand and perform (de)serialization of Python objects - not started 
 
 - Object persistence, serialization and deserialization: meaning, purpose, usage
 - Serializing objects as a single byte stream: the `pickle` module, pickling various data types
@@ -146,7 +160,9 @@ The exam consists of five sections:
 - Serializing objects by implementing a serialization dictionary: the `shelve` module, file modes, creating shelve objects
 - Alternative serialization: `json`, `marshal`, `yaml`
 
-### PCPP-32-101 1.12 – Understand and explain the concept of metaprogramming
+[Above topic reference](https://realpython.com/learning-paths/standard-library-modules-you-should-know/)
+
+### PCPP-32-101 1.12 – Understand and explain the concept of metaprogramming - not started
 
 - Metaclasses: meaning, purpose, usage
 - The `type` metaclass and the `type()` function
@@ -158,11 +174,14 @@ The exam consists of five sections:
 - Metaclass conflicts and resolution
 - Practical use cases for metaclasses
 
+[Above topics reference](https://realpython.com/learning-paths/metaprogramming-in-python/)
 ---
 
 ## Section 2: Coding Conventions, Best Practices, and Standardization (12%)
 
-**Objectives covered by the block (7 exam items)**
+[Write more Pythonic code](https://realpython.com/learning-paths/writing-pythonic-code/)
+
+**Objectives covered by the block (7 exam items)** 
 
 ### PCPP-32-101 2.1 – Understand and explain the concept of Python Enhancement Proposals and Python philosophy
 
@@ -199,6 +218,8 @@ The exam consists of five sections:
 ## Section 3: GUI Programming (20%)
 
 **Objectives covered by the block (8 exam items)**
+
+[Refer this course](https://realpython.com/learning-paths/python-gui-programming/)
 
 ### PCPP-32-101 3.1 – Understand and explain the basic concepts and terminology related to GUI programming
 
@@ -242,6 +263,8 @@ The exam consists of five sections:
 ## Section 4: Network Programming (18%)
 
 **Objectives covered by the block (8 exam items)**
+
+[Refer to this course](https://realpython.com/learning-paths/network-programming-and-security/)
 
 ### PCPP-32-101 4.1 – Understand and explain the basic concepts of network programming
 
@@ -293,6 +316,8 @@ The exam consists of five sections:
 ## Section 5: File Processing and Communicating with a Program's Environment (15%)
 
 **Objectives covered by the block (7 exam items)**
+[Refer these course](https://realpython.com/learning-paths/files-and-file-streams-in-python/)
+[Refer these course](https://realpython.com/learning-paths/database-access-in-python/)
 
 ### PCPP-32-101 5.1 – Demonstrate proficiency in database programming in Python
 
@@ -331,6 +356,7 @@ The exam consists of five sections:
 ## Section 6: Advanced Python Concepts (Supplementary)
 
 **Additional topics for comprehensive professional certification preparation**
+[Course link](https://realpython.com/learning-paths/python-concurrency-parallel-programming/)
 
 ### 6.1 – Understand and implement concurrency and parallelism
 
@@ -371,6 +397,8 @@ The exam consists of five sections:
 
 ### 6.3 – Demonstrate proficiency with generators and iterators
 
+[Course link](https://realpython.com/learning-paths/generators-and-generator-expressions/)
+
 - Iterator protocol: `__iter__()` and `__next__()`
 - Creating custom iterators
 - Generator functions and the `yield` keyword
@@ -385,6 +413,7 @@ The exam consists of five sections:
 - Coroutines and generator-based concurrency
 
 ### 6.4 – Work with regular expressions
+[Course link](https://realpython.com/learning-paths/standard-library-modules-you-should-know/)
 
 - The `re` module: importing and basic usage
 - Pattern matching: `match()`, `search()`, `findall()`, `finditer()`
@@ -399,6 +428,7 @@ The exam consists of five sections:
 - Raw strings for patterns
 
 ### 6.5 – Implement comprehensive testing strategies
+[Course link](https://realpython.com/learning-paths/test-your-python-apps/)
 
 - The `unittest` module
   - TestCase class and test methods
@@ -421,6 +451,7 @@ The exam consists of five sections:
 - Integration and end-to-end testing
 
 ### 6.6 – Manage virtual environments and packages
+[Course link](https://realpython.com/learning-paths/perfect-your-python-development-setup/)
 
 - Virtual environments: purpose and benefits
 - The `venv` module: creating and activating virtual environments
@@ -441,6 +472,8 @@ The exam consists of five sections:
 - Dependency management tools: `pipenv`, `poetry`
 
 ### 6.7 – Optimize performance and profile code
+
+[Course link](https://realpython.com/learning-paths/understand-cpython/)
 
 - Performance profiling
   - The `cProfile` module: profiling function calls
