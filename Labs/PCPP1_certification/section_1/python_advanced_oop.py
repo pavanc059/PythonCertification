@@ -121,3 +121,32 @@ if __name__ == "__main__":
     print(f'Cached value: {cached_value(10)}') # Accessing cached value using cached
     print(f'Cached value: {cached_value(10)}')
     print(f'Cached value: {cached_value(100)}')
+
+############################# PCPP-32-101 1.5 – Design, build, and use Python static and class methods #############################
+    print("\n_____________ PCPP-32-101 1.5 – Design, build, and use Python static and class methods __________\n")
+    
+    from objects_classes_attributes.class_static_methods import DaysInAWeek, Employee
+
+    print(f'Day in a week enum: {DaysInAWeek.Monday}, value: {DaysInAWeek.Monday.value} and name: {DaysInAWeek.Monday.name}') # Accessing enum member and its value``
+
+    print(f'Is Monday a workday? {Employee.is_workday("Monday")}')
+    print(f'Is Saturday a workday? {Employee.is_workday("tuesday")}') 
+    print(f'Is Monday a workday? {Employee.is_workday(0)}')
+
+    emp1 = Employee("John", "Doe", 50000)
+    print(f'Employee full name: {emp1.fullname()}') # Accessing instance method
+    print(f'Employee raise amount before update: {emp1.raise_amount}') # Accessing
+    Employee.update_raise_amount(1.05) # Updating class variable using class method
+    emp2 = Employee("Jane", "Smith", 60000)
+    print(f'Employee raise amount after update: {emp1.raise_amount}') # Accessing updated class variable using instance
+    print(f'Employee raise amount for new instance: {emp2.raise_amount}') # Accessing updated class variable using new instance
+    emp1.raise_amount = 1.06 # Modifying class variable using instance (this creates an instance variable that shadows the class variable for emp1)
+    print(f'Employee raise amount for emp1 after modification: {emp1.raise_amount}') # Accessing modified raise_amount for emp1 (instance variable)
+    print(f'Employee raise amount for emp2 after emp1 modification: {emp2.raise_amount}') # Accessing raise_amount for emp2 (still refers to class variable)
+    emp_str = "Alice-Wonderland-70000"
+    emp3 = Employee.from_string(emp_str) # Creating new instance using class method from_string
+    print(f'Employee 3 full name: {emp3.fullname()}') # Accessing instance method for emp3
+    print(f'Employee 3 raise amount: {emp3.raise_amount}') # Accessing class variable for emp3 (inherits from Employee class)
+
+
+
