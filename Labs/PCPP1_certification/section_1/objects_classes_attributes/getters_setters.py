@@ -3,7 +3,10 @@
 # Using descriptor protocol to create a custom descriptor class that manages the access and modification of an attribute. This allows for more advanced control over how the attribute is accessed and modified, such as adding validation or logging.
 # Using __getattr__ and __setattr__ magic methods to intercept attribute access and modification. This allows for dynamic handling of attributes, such as creating attributes on the fly or implementing custom behavior when attributes are accessed or modified.
 # using property() function to create a property that manages the access and modification of an attribute. This allows for a more concise and readable way to define getter and setter methods for an attribute.
-
+# property(fget=None, fset=None, fdel=None, doc=None) is a built-in function that creates a property object in Python. 
+#   It allows you to define getter, setter, and deleter methods for an attribute in a class, providing a way to control access and modification of that attribute.
+#   https://docs.python.org/3/howto/descriptor.html#properties
+# functools import cached_property is a decorator that transforms a method of a class into a property whose value is computed once and then cached as a normal attribute for the life of the instance. This can be useful for expensive computations that you want to avoid repeating.
 
 class Car:
     '''A simple Car class with getter and setter methods for make and model attributes.'''
