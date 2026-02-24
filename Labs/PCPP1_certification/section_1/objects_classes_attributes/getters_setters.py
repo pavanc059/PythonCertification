@@ -7,6 +7,8 @@
 #   It allows you to define getter, setter, and deleter methods for an attribute in a class, providing a way to control access and modification of that attribute.
 #   https://docs.python.org/3/howto/descriptor.html#properties
 # functools import cached_property is a decorator that transforms a method of a class into a property whose value is computed once and then cached as a normal attribute for the life of the instance. This can be useful for expensive computations that you want to avoid repeating.
+# functools import cache is a decorator that transforms a function into a memoized function, which caches the results of function calls and 
+#       returns the cached result when the same inputs occur again. This can be useful for optimizing performance by avoiding redundant calculations.
 
 class Car:
     '''A simple Car class with getter and setter methods for make and model attributes.'''
@@ -99,4 +101,48 @@ class Shape:
         if name == "no_of_sides" and (not isinstance(value, int) or value < 0):
             raise ValueError("no_of_sides must be a non-negative integer")
         self.__dict__[name] = value
+
+class Points:
+    def __init__(self, x, y):
+        self._x = x
+        self._y = y
+
+    def get_x(self):
+        return self._x
+    
+    def set_x(self, value):
+        self._x = value
+
+    def get_y(self):
+        return self._y
+    
+    def set_y(self, value):
+        self._y = value
+
+    property(fget=get_x, fset=set_x, fdel=None, doc="The x coordinate of the point")
+    property(fget=get_y, fset=set_y, fdel=None, doc="The y coordinate of the point")
+
+from functools import cached_property, cache
+from time import sleep
+class SquareOfNumbers:
+    def __init__(self, number):
+        self._number = number
+
+    @cached_property
+    def number(self):
+        print("Calculating square...")
+        sleep(1) # Simulating an expensive computation
+        return self._number ** 2    
+    
+
+class CachedFunctionResults:
+    def __init__(self, func):
+        self.func = func
+        self.cache = {}
+
+    @cache
+    def __call__(self, *args):
+        sleep(3) # Simulating an expensive computation
+        return self.func(*args)
+       
 

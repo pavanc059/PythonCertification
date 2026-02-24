@@ -87,7 +87,7 @@ if __name__ == "__main__":
     # AttributeError: property 'type' of 'LandVehicle' object has no setter
 
     print('\n Using descriptors to control access to attributes \n')
-    from objects_classes_attributes.getters_setters import PizzaSizes, Shape
+    from objects_classes_attributes.getters_setters import PizzaSizes, Shape, Points, SquareOfNumbers, CachedFunctionResults
 
     pizza1 = PizzaSizes(14) # Creating pizza instance with size 25
     print(f'Pizza size: {pizza1.size}') # Accessing size using descriptor
@@ -99,3 +99,25 @@ if __name__ == "__main__":
     print(f'Shape: {triangle.name}, Sides: {triangle.no_of_sides}') #
     triangle.no_of_sides = 4 # Modifying sides using descriptor setter
     print(f'Shape: {triangle.name}, Sides after modification: {triangle.no_of_sides}') # Accessing sides after modification using descriptor
+
+    point1 = Points(10, 20) # Creating point instance with x=10, y=20
+    print(f'Point: ({point1.get_x()}, {point1.get_y()})') # Accessing x and y using getter methods
+    point1.x = 15 # Modifying x using setter method
+    point1.y = 25 # Modifying y using setter method 
+    print(f'Point after modification: ({point1.x}, {point1.y})') # Accessing x and y after modification using property getters
+
+    squares = SquareOfNumbers(5) # Creating instance of SquareOfNumbers with size 5
+    print(f'Squares of numbers from 0 to 4: {squares.number}') # Accessing squares using cached_property
+    squares = SquareOfNumbers(5)
+    print(f'Squares of numbers from 0 to 5 (cached): {squares.number}') # Accessing squares again to demonstrate caching (cached value is returned without recomputation) 
+    squares.number = 10 # 
+    print(f'Squares of numbers from 0 to 10 (cached): {squares.number}') # setting number to 10 doesn't cause recomputation because cached_property doesn't have setter method defined, it will return the cached value of squares from 0 to 5 instead of recalculating squares from 0 to 10.
+    
+    def expensive_computation(x):
+        print(f'Performing expensive computation for {x}...')
+        return x * x
+
+    cached_value = CachedFunctionResults(expensive_computation) # Creating instance of CachedFunctionResults with value 10
+    print(f'Cached value: {cached_value(10)}') # Accessing cached value using cached
+    print(f'Cached value: {cached_value(10)}')
+    print(f'Cached value: {cached_value(100)}')
