@@ -48,7 +48,7 @@ The exam consists of five sections:
 - Operating with special methods [Operator overloading/ method overloading](https://realpython.com/operator-function-overloading/)
 - Extending class implementations to support additional core syntax operations
 
-### PCPP-32-101 1.3 – Understand and use the concepts of inheritance, polymorphism, and composition - not started
+### PCPP-32-101 1.3 – Understand and use the concepts of inheritance, polymorphism, and composition - started
 
 - Class hierarchies
 - Single vs. multiple inheritance
