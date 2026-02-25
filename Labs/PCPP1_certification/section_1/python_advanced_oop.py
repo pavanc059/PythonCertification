@@ -149,4 +149,12 @@ if __name__ == "__main__":
     print(f'Employee 3 raise amount: {emp3.raise_amount}') # Accessing class variable for emp3 (inherits from Employee class)
 
 
+    print("\n_____________ PCPP-32-101 1.6 – Design, build, and use Python inheritance and composition __________\n")
 
+    from inheritance_composition.hr import PayrollSystem, SalaryEmployee, HourlyEmployee, CommissionEmployee
+    
+    salary_employee = SalaryEmployee("Alice", 1, 5000)
+    hourly_employee = HourlyEmployee("Bob", 2, 20, 160)
+    commission_employee = CommissionEmployee("Charlie", 3, 3000, 500, 10000)
+    payroll_system = PayrollSystem([salary_employee, hourly_employee, commission_employee])
+    payroll_system.calculate_payroll()
