@@ -9,37 +9,55 @@ This very important approach is present in most computer applications because it
 - > method — a function built into a class that is executed on behalf of the class or object; some say that it’s a 'callable attribute';
 - > type — refers to the class that was used to instantiate the object.
 
-### The Four Pillars of OOP
+## The Four Pillars of OOP
+
 Object-Oriented Programming is built upon four main principles:
 
-1.  **Encapsulation**: The bundling of data (attributes) and the methods that operate on that data into a single unit, or "class". It restricts direct access to some of an object's components, which is a means of preventing accidental interference and misuse of the data.
+1. **Encapsulation**: The bundling of data (attributes) and the methods that operate on that data into a single unit, or "class". It restricts direct access to some of an object's components, which is a means of preventing accidental interference and misuse of the data.
 
-2.  **Inheritance**: A mechanism wherein a new class derives attributes and methods from an existing class. This promotes code reusability and establishes a hierarchical relationship between classes.
+2. **Inheritance**: A mechanism wherein a new class derives attributes and methods from an existing class. This promotes code reusability and establishes a hierarchical relationship between classes.
 
-3.  **Polymorphism**: The ability of an object to take on many forms. The most common use of polymorphism in OOP occurs when a parent class reference is used to refer to a child class object. It allows for a single interface to represent different underlying forms (data types).
+3. **Polymorphism**: The ability of an object to take on many forms. The most common use of polymorphism in OOP occurs when a parent class reference is used to refer to a child class object. It allows for a single interface to represent different underlying forms (data types).
 
-4.  **Abstraction**: The concept of hiding the complex implementation details and showing only the essential features of the object. It helps in managing complexity by allowing us to focus on what an object does instead of how it does it.
+4. **Abstraction**: The concept of hiding the complex implementation details and showing only the essential features of the object. It helps in managing complexity by allowing us to focus on what an object does instead of how it does it.
 
 These concepts will be explored in detail in the following sections.
 
+Object-Oriented Programming is built upon four main principles:
+
+1. **Encapsulation**: The bundling of data (attributes) and the methods that operate on that data into a single unit, or "class". It restricts direct access to some of an object's components, which is a means of preventing accidental interference and misuse of the data.
+
+2. **Inheritance**: A mechanism wherein a new class derives attributes and methods from an existing class. This promotes code reusability and establishes a hierarchical relationship between classes.
+
+3. **Polymorphism**: The ability of an object to take on many forms. The most common use of polymorphism in OOP occurs when a parent class reference is used to refer to a child class object. It allows for a single interface to represent different underlying forms (data types).
+
+4. **Abstraction**: The concept of hiding the complex implementation details and showing only the essential features of the object. It helps in managing complexity by allowing us to focus on what an object does instead of how it does it.
+
+These concepts will be explored in detail in the following sections.
 
 ## Class
+
 - A class is like a recipe which can be used when you want to create a useful object (this is where the name of the approach comes from). You may produce as many objects as you  need to solve your problem.
 - Every object has a set of traits (they are called properties or attributes - we'll use both words synonymously) and is able to perform a set of activities (which are called methods).
 
 ### What is an object?
+
 - A class (among other definitions) is a set of objects. An object is a being belonging to a class.
 
 - An object is an incarnation of the requirements, traits, and qualities assigned to a specific class. This may sound simple, but note the following important circumstances. Classes form a hierarchy. This may mean that an object belonging to a specific class belongs to all the superclasses at the same time. It may also mean that any object belonging to a superclass may not belong to any of its subclasses.
 
 #### What does an object have?
- The object programming convention assumes that every existing object may be equipped with three groups of attributes:
- - An object has a name that uniquely identifies it within its home namespace (although there may be some anonymous objects, too)
- - An object has a set of individual properties which make it original, unique or outstanding (although it's possible that some objects may have no properties at all)
- - An object has a set of abilities to perform specific activities, able to change the object itself, or some of the other objects.
+
+The object programming convention assumes that every existing object may be equipped with three groups of attributes:
+
+- An object has a name that uniquely identifies it within its home namespace (although there may be some anonymous objects, too)
+- An object has a set of individual properties which make it original, unique or outstanding (although it's possible that some objects may have no properties at all)
+- An object has a set of abilities to perform specific activities, able to change the object itself, or some of the other objects.
 
 #### What is an attribute
+
 An attribute is a capacious term that can refer to two major kinds of class traits:
+
 - Variables, containing information about the class itself or a class instance; classes and class instances can own many variables;
 - Methods, formulated as Python functions; they represent a behavior that could be applied to the object.
 - Each Python object has its own individual set of attributes. We can extend that set by adding new attributes to existing objects, change (reassign) them or control access to those attributes.
@@ -332,6 +350,9 @@ True
 - There is one fundamental requirement a method is obliged to have at least one parameter (there are no such thing as parameterless methods a method may be invoked without an argument, but not declared without parameters).
 - The first (or only) parameter is usually named ```self``` we need to use same name as first parameter.
 - The name self suggests the parameter's purpose - it identifies the object for which the method is invoked.
+
+![Method Types](types_methods.png)
+
 ```python
 class Classy:
     def method(self):

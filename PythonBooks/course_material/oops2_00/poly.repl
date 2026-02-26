@@ -1,0 +1,21 @@
+>>> from hexcolor import HexColorContainer
+>>> container = HexColorContainer((255, 255, 255), (106, 50, 159))
+>>> container[0]
+'#ffffff'
+>>> container[1]
+'#6a329f'
+>>> len(container)
+2
+>>> container.add_color(99, 99, 99)
+>>> len(container)
+3
+>>> container[2]
+'#636363'
+>>> container[0:2]
+['#ffffff', '#6a329f']
+>>> for color in container:
+...     print(color)
+...
+#ffffff
+#6a329f
+#636363

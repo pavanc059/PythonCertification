@@ -27,3 +27,11 @@ def print_log_levels():
     logger.info("Current logger level:"+ str(logger.level))
 
 print_log_levels()
+
+
+if __name__ == "__main__":
+    logger.debug("This is a debug message.")
+    logger.info("This is an info message.")
+    logger.warning("This is a warning message.")
+    logger.error("This is an error message.")
+    logger.critical("This is a critical message.")

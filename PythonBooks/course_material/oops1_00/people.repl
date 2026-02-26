@@ -1,0 +1,9 @@
+>>> person = {
+...     "first": "Geralt",
+...     "last": "of Rivia",
+... }
+>>> employee = {
+...     "first": "Yennefer",
+...     "last": "of Vengerberg",
+...     "ID": 3023342,
+... }

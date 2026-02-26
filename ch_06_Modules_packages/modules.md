@@ -1,9 +1,12 @@
 ### importing module: 
 
-- import moduleName: will import module specified access any entities using module name and entity name 
-- from moduleName import entities : will import specified entity with comma sperated list from given modules
-- from modulesName import entityname as aliasname :  this will import specified entity from a module and use differet name using as
-- dir() : will give you list of entities in a module but module has to be fully imported will not work using `from math import *` dir(math) will throw error
+- import moduleName: will import module specified access any entities using module name and entity name. 
+- from moduleName import entities : will import specified entity with comma sperated list from given modules.
+- from modulesName import entityname as aliasname :  this will import specified entity from a module and use differet name using as.
+- sys.path : gives you all paths that imported module will be looked at.
+- dir() : will give you list of entities in a module but module has to be fully imported will not work using `from math import *` dir(math) will throw error.
+- When you want module to also run as script and execute code while running in python interpreter you can use condition as if(__name__ == '__main__')
+- How to reload the module when module is imported it is imported for that session even if you import multiple times it will be imported only once. To reload a module you need to call reload() from importlib
 
 #### Random module
 The seed() function is able to directly set the generator's seed. We'll show you two of its variants:
