@@ -62,7 +62,7 @@ The exam consists of five sections:
 
 [All above concepts](https://realpython.com/courses/inheritance-composition-python/)
 
-### PCPP-32-101 1.4 – Understand the concept of extended function argument syntax and demonstrate proficiency in using decorators - not started
+### PCPP-32-101 1.4 – Understand the concept of extended function argument syntax and demonstrate proficiency in using decorators - started
 
 - Special identifiers: `*args`, `**kwargs`
 - Forwarding arguments to other functions
