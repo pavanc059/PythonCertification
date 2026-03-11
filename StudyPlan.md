@@ -79,7 +79,7 @@ The exam consists of five sections:
   
 [All above concepts](https://realpython.com/learning-paths/functional-programming/)
 
-### PCPP-32-101 1.5 – Design, build, and use Python static and class methods - In-complete
+### PCPP-32-101 1.5 – Design, build, and use Python static and class methods - complete
 
 - Implementing class and static methods
 - Class vs. static methods
