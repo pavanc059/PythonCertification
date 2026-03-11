@@ -10,7 +10,7 @@ def headline(text, align=True):
         return f" {text.title()} ".center(50, "o")
 
 
-print(headline("python type checking))
+print(headline("python type checking"))
 
 print(headline("python type checking", align=False))
 
@@ -21,8 +21,7 @@ def headline(text: str, align: bool = True) -> str:
     else:
         return f" {text.title()} ".center(50, "o")
 
-headline
 
-print(headline("python type checking, align="left"))
+print(headline('python type checking, align="left"'))
 
-print(headline("python type checking, align="center"))
+print(headline('python type checking, align="center"'))

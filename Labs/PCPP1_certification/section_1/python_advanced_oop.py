@@ -148,6 +148,22 @@ if __name__ == "__main__":
     print(f'Employee 3 full name: {emp3.fullname()}') # Accessing instance method for emp3
     print(f'Employee 3 raise amount: {emp3.raise_amount}') # Accessing class variable for emp3 (inherits from Employee class)
 
+    print('++++++++++++++++++++++++++++++++++++++ Factroy Design Pattern ++++++++++++++++++++++++++++++++++++++')
+    from objects_classes_attributes.serializer import SerializerCreator, Song, serialize
+
+    my_song = Song("1", "Bohemian Rhapsody", "Queen", "Rock Classics")
+    serialized_song = serialize(my_song, "JSON")
+    print(f'Serialized song in JSON format: {serialized_song}')
+
+    serialized_song_xml = serialize(my_song, "XML")
+    print(f'Serialized song in XML format: {serialized_song_xml}')
+
+    yaml_serialized_song = serialize(my_song, "YAML")
+    print(f'Serialized song in YAML format: {yaml_serialized_song}')
+    
+    quit()
+
+    
 
     print("\n_____________ PCPP-32-101 1.6 – Design, build, and use Python inheritance and composition __________\n")
 
@@ -158,3 +174,5 @@ if __name__ == "__main__":
     commission_employee = CommissionEmployee("Charlie", 3, 3000, 500, 10000)
     payroll_system = PayrollSystem([salary_employee, hourly_employee, commission_employee])
     payroll_system.calculate_payroll()
+
+
