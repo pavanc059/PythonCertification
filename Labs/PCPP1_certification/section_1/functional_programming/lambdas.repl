@@ -1,0 +1,75 @@
+>>> # Reversing sequences
+>>> name = "Monty Python"
+>>> name[0]
+'M'
+>>> name[0:8]
+'Monty Py'
+>>> name[0:8:2]
+'MnyP'
+>>> name[:8]
+'Monty Py'
+>>> name[:8:2]
+'MnyP'
+>>> name[::2]
+'MnyPto'
+>>> name[-1]
+'n'
+>>> name[::-1]
+'nohtyP ytnoM'
+>>> animals = ["ferret", "vole", "dog", "gecko"]
+>>> animals[::-1]
+['gecko', 'dog', 'vole', 'ferret']
+>>> # Sorting backwards strings
+>>> def backwards(name):
+...     return name[::-1]
+...
+>>> backwards(animals[1])
+'elov'
+>>> banimals = []
+>>> for animal in animals:
+...     banimals.append(backwards(animal))
+...
+>>> banimals
+['terref', 'elov', 'god', 'okceg']
+>>> sorted(animals, key=backwards)
+['vole', 'dog', 'gecko', 'ferret']
+>>> # Lambdas
+>>> also_backwards = lambda x: x[::-1]
+>>> also_backwards(animals[0])
+'terref'
+>>> also_backwards
+<function <lambda> at 0x102a2d6f0>
+>>> sorted(animals, key=also_backwards)
+['vole', 'dog', 'gecko', 'ferret']
+>>> sorted(animals, key=lambda x: x[::-1])
+['vole', 'dog', 'gecko', 'ferret']
+>>> sorted(animals, key=lambda x: -len(x))
+['ferret', 'gecko', 'vole', 'dog']
+>>> # Fancier lambdas
+>>> (lambda x: x[::-1])("Monty")
+'ytnoM'
+>>> (lambda x, y: (x * y) + x)(3, 4)
+15
+>>> (lambda x: "even" if x % 2 == 0 else "odd")(2)
+'even'
+>>> (lambda x: "even" if x % 2 == 0 else "odd")(3)
+'odd'
+>>> (lambda x: (x, x + 1))(5)
+(5, 6)
+>>> (lambda x: x, x + 1)(5)
+<python-input-50>:1: SyntaxWarning: 'tuple' object is not callable; perhaps you missed a comma?
+Traceback (most recent call last):
+  File "<python-input-50>", line 1, in <module>
+    (lambda x: x, x + 1)(5)
+                  ^
+NameError: name 'x' is not defined
+>>> z = 3
+>>> (lambda x: x + z)(4)
+7
+>>> x= 5
+>>> (lambda x: x + z)(4)
+7
+>>> x
+5
+>>> f"Hello {(lambda x: x[::-1])(name)}"
+'Hello nohtyP ytnoM'

@@ -1,0 +1,51 @@
+>>> # Mapping values
+>>> def backwards(name):
+...     return name[::-1]
+...
+>>> backwards("Monty")
+'ytnoM'
+>>> animals = ["ferret", "vole", "dog", "gecko"]
+>>> for animal in animals:
+...     print(backwards(animal))
+...
+terref
+elov
+god
+okceg
+>>> for banimal in map(backwards, animals):
+...     print(banimal)
+...
+terref
+elov
+god
+okceg
+>>> map(backwards, animals)
+<map object at 0x1012e6c00>
+>>> list(map(backwards, animals))
+['terref', 'elov', 'god', 'okceg']
+>>> list(map(lambda x: x[::-1], animals))
+['terref', 'elov', 'god', 'okceg']
+>>> # Mapping to convert types
+>>> "+".join(animals)
+'ferret+vole+dog+gecko'
+>>> "+".join([1, 2, 3, 4, 5])
+Traceback (most recent call last):
+  File "<python-input-11>", line 1, in <module>
+    "+".join([1, 2, 3, 4, 5])
+    ~~~~~~~~^^^^^^^^^^^^^^^^^
+TypeError: sequence item 0: expected str instance, int found
+>>> num_strings = [str(num) for num in [1, 2, 3, 4, 5]]
+>>> num_strings
+['1', '2', '3', '4', '5']
+>>> "+".join(num_strings)
+'1+2+3+4+5'
+>>> "+".join(map(str, [1, 2, 3, 4, 5]))
+'1+2+3+4+5'
+>>> # Mapping multiple iterables
+>>> list(map(lambda x, y: x + y, [1, 2, 3], [10, 20, 30]))
+[11, 22, 33]
+>>> from operator import add
+>>> list(map(add, [1, 2, 3], [10, 20, 30]))
+[11, 22, 33]
+>>> list(map(lambda x, y, z: x + y + z, [1, 2, 3], [10, 20, 30], [100, 200, 300]))
+[111, 222, 333]
