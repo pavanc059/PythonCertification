@@ -1,0 +1,19 @@
+;; PgBouncer authentication file
+;; Format: "username" "password"
+;;
+;; IMPORTANT: Update these credentials to match your PostgreSQL setup
+;; For production, use strong passwords and restrict file permissions:
+;;   chmod 600 pgbouncer_auth.txt
+;;
+;; To generate MD5 password hash:
+;;   echo -n "passwordusername" | md5sum
+;;   Result: "md5" + hash
+;;
+;; Example with plain text (for development only):
+;; "user" "password"
+;;
+;; Example with MD5 hash:
+;; "user" "md5d8578edf8458ce06fbc5bb76a58c5ca4"
+
+"postgres" "postgres"
+"stockiq_user" "stockiq_password"
