@@ -1,0 +1,194 @@
+# Redis Sentinel High Availability Setup
+# This provides automatic failover for production deployments
+
+version: '3.8'
+
+services:
+  # ==================== REDIS MASTER ====================
+  redis-master:
+    image: redis:7-alpine
+    container_name: stockiq-redis-master
+    command: redis-server /usr/local/etc/redis/redis-production.conf
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_master_data:/data
+      - ./redis/redis-production.conf:/usr/local/etc/redis/redis-production.conf:ro
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD}", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - redis-ha
+    restart: always
+
+  # ==================== REDIS REPLICA 1 ====================
+  redis-replica-1:
+    image: redis:7-alpine
+    container_name: stockiq-redis-replica-1
+    command: >
+      sh -c "redis-server /usr/local/etc/redis/redis-production.conf
+      --replicaof redis-master 6379
+      --replica-announce-ip redis-replica-1
+      --replica-announce-port 6379"
+    ports:
+      - "6380:6379"
+    volumes:
+      - redis_replica_1_data:/data
+      - ./redis/redis-production.conf:/usr/local/etc/redis/redis-production.conf:ro
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+    depends_on:
+      redis-master:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD}", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - redis-ha
+    restart: always
+
+  # ==================== REDIS REPLICA 2 ====================
+  redis-replica-2:
+    image: redis:7-alpine
+    container_name: stockiq-redis-replica-2
+    command: >
+      sh -c "redis-server /usr/local/etc/redis/redis-production.conf
+      --replicaof redis-master 6379
+      --replica-announce-ip redis-replica-2
+      --replica-announce-port 6379"
+    ports:
+      - "6381:6379"
+    volumes:
+      - redis_replica_2_data:/data
+      - ./redis/redis-production.conf:/usr/local/etc/redis/redis-production.conf:ro
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+    depends_on:
+      redis-master:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD}", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - redis-ha
+    restart: always
+
+  # ==================== SENTINEL 1 ====================
+  sentinel-1:
+    image: redis:7-alpine
+    container_name: stockiq-sentinel-1
+    command: >
+      sh -c "echo 'port 26379
+      daemonize no
+      pidfile /var/run/redis-sentinel.pid
+      logfile \"\"
+      dir /tmp
+      sentinel monitor stockiq-master redis-master 6379 2
+      sentinel auth-pass stockiq-master ${REDIS_PASSWORD}
+      sentinel down-after-milliseconds stockiq-master 5000
+      sentinel parallel-syncs stockiq-master 1
+      sentinel failover-timeout stockiq-master 60000
+      sentinel deny-scripts-reconfig yes
+      loglevel notice' > /usr/local/etc/redis/sentinel.conf &&
+      redis-sentinel /usr/local/etc/redis/sentinel.conf"
+    ports:
+      - "26379:26379"
+    depends_on:
+      redis-master:
+        condition: service_healthy
+    networks:
+      - redis-ha
+    restart: always
+
+  # ==================== SENTINEL 2 ====================
+  sentinel-2:
+    image: redis:7-alpine
+    container_name: stockiq-sentinel-2
+    command: >
+      sh -c "echo 'port 26379
+      daemonize no
+      pidfile /var/run/redis-sentinel.pid
+      logfile \"\"
+      dir /tmp
+      sentinel monitor stockiq-master redis-master 6379 2
+      sentinel auth-pass stockiq-master ${REDIS_PASSWORD}
+      sentinel down-after-milliseconds stockiq-master 5000
+      sentinel parallel-syncs stockiq-master 1
+      sentinel failover-timeout stockiq-master 60000
+      sentinel deny-scripts-reconfig yes
+      loglevel notice' > /usr/local/etc/redis/sentinel.conf &&
+      redis-sentinel /usr/local/etc/redis/sentinel.conf"
+    ports:
+      - "26380:26379"
+    depends_on:
+      redis-master:
+        condition: service_healthy
+    networks:
+      - redis-ha
+    restart: always
+
+  # ==================== SENTINEL 3 ====================
+  sentinel-3:
+    image: redis:7-alpine
+    container_name: stockiq-sentinel-3
+    command: >
+      sh -c "echo 'port 26379
+      daemonize no
+      pidfile /var/run/redis-sentinel.pid
+      logfile \"\"
+      dir /tmp
+      sentinel monitor stockiq-master redis-master 6379 2
+      sentinel auth-pass stockiq-master ${REDIS_PASSWORD}
+      sentinel down-after-milliseconds stockiq-master 5000
+      sentinel parallel-syncs stockiq-master 1
+      sentinel failover-timeout stockiq-master 60000
+      sentinel deny-scripts-reconfig yes
+      loglevel notice' > /usr/local/etc/redis/sentinel.conf &&
+      redis-sentinel /usr/local/etc/redis/sentinel.conf"
+    ports:
+      - "26381:26379"
+    depends_on:
+      redis-master:
+        condition: service_healthy
+    networks:
+      - redis-ha
+    restart: always
+
+volumes:
+  redis_master_data:
+    driver: local
+  redis_replica_1_data:
+    driver: local
+  redis_replica_2_data:
+    driver: local
+
+networks:
+  redis-ha:
+    driver: bridge
+
+# Usage:
+# 1. Set REDIS_PASSWORD environment variable:
+#    export REDIS_PASSWORD=$(openssl rand -base64 32)
+#
+# 2. Start the cluster:
+#    docker-compose -f docker-compose.sentinel.yml up -d
+#
+# 3. Check cluster status:
+#    docker exec -it stockiq-sentinel-1 redis-cli -p 26379 sentinel masters
+#    docker exec -it stockiq-sentinel-1 redis-cli -p 26379 sentinel slaves stockiq-master
+#
+# 4. Test failover:
+#    docker stop stockiq-redis-master
+#    docker exec -it stockiq-sentinel-1 redis-cli -p 26379 sentinel get-master-addr-by-name stockiq-master
+#
+# 5. Application configuration:
+#    REDIS_SENTINEL_HOSTS=sentinel-1:26379,sentinel-2:26379,sentinel-3:26379
+#    REDIS_SENTINEL_MASTER=stockiq-master

@@ -1,0 +1,68 @@
+# Core Dependencies
+python-dateutil>=2.8.2
+pytz>=2023.3
+python-dotenv>=1.0.0
+
+# Data & Analysis
+yfinance>=0.2.18
+pandas>=1.5.0
+numpy>=1.24.0
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+
+# Database
+psycopg2-binary>=2.9.0
+SQLAlchemy>=2.0.0
+alembic>=1.12.0
+
+# Cache & Tasks
+redis>=5.0.0
+redis[hiredis]>=5.0.0  # C parser for better performance
+celery>=5.3.0
+kombu>=5.3.0  # Celery messaging library
+
+# Real-Time Streaming
+websockets>=12.0  # WebSocket client for real-time data streaming
+
+# Machine Learning
+scikit-learn>=1.3.0
+xgboost>=2.0.0
+shap>=0.42.0
+statsmodels>=0.14.0  # Time series analysis and cointegration testing
+
+# Reinforcement Learning
+gymnasium>=0.29.0  # OpenAI Gym successor
+stable-baselines3>=2.1.0  # RL algorithms (PPO, A2C, SAC)
+tensorboard>=2.14.0  # Training visualization
+
+# NLP & Sentiment Analysis
+vaderSentiment>=3.3.2
+transformers>=4.30.0
+torch>=2.0.0
+spacy>=3.6.0
+
+# Visualization & UI
+streamlit>=1.45.0
+plotly>=5.15.0
+
+# Utilities
+tenacity>=8.2.0
+structlog>=23.1.0
+pydantic>=2.0.0
+pydantic-settings>=2.0.0
+
+# Security
+bleach>=6.0.0  # HTML sanitization for XSS protection
+cryptography>=41.0.0  # Cryptographic primitives
+python-jose[cryptography]>=3.3.0  # JWT token handling
+passlib[bcrypt]>=1.7.4  # Password hashing
+
+# Development Dependencies
+pytest>=7.4.0
+pytest-cov>=4.1.0
+pytest-asyncio>=0.21.0
+hypothesis>=6.82.0
+black>=23.7.0
+flake8>=6.1.0
+mypy>=1.5.0
