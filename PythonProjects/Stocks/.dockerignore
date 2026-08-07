@@ -1,0 +1,73 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual Environment
+venv/
+ENV/
+env/
+
+# Environment Variables
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs
+*.log
+logs/
+
+# Database
+*.db
+*.sqlite3
+
+# Cache
+.cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Documentation
+docs/
+*.md
+!README.md
+
+# Data
+data/
+*.csv
+*.xlsx
+*.json
+!package.json
+
+# Models
+models/saved/
+*.pkl
+*.joblib
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore

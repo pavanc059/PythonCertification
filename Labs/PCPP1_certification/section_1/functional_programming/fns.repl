@@ -1,0 +1,64 @@
+>>> # Function calling vs references
+>>> def say_hello():
+...     print("Hello!")
+...
+>>> say_hello()
+Hello!
+>>> say_hello
+<function say_hello at 0x1049b57a0>
+>>> also_hello = say_hello
+>>> also_hello()
+Hello!
+>>> print
+<built-in function print>
+>>> # Function references as arguments
+>>> print("You came here for an argument?")
+You came here for an argument?
+>>> print("I would like to have an argument, please", 1972)
+I would like to have an argument, please 1972
+>>> print("Is this a five minute argument?", say_hello)
+Is this a five minute argument? <function say_hello at 0x1049b57a0>
+>>> print(say_hello, print)
+<function say_hello at 0x1049b57a0> <built-in function print>
+>>> dir(say_hello)
+['__annotate__', '__annotations__', '__builtins__', '__call__', '__class__', '__closure__', '__code__', '__defaults__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__get__', '__getattribute__', '__getstate__', '__globals__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__kwdefaults__', '__le__', '__lt__', '__module__', '__name__', '__ne__', '__new__', '__qualname__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__type_params__']
+>>> say_hello.language = "en"
+>>> say_hello.language
+'en'
+>>> dir(say_hello)
+['__annotate__', '__annotations__', '__builtins__', '__call__', '__class__', '__closure__', '__code__', '__defaults__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__get__', '__getattribute__', '__getstate__', '__globals__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__kwdefaults__', '__le__', '__lt__', '__module__', '__name__', '__ne__', '__new__', '__qualname__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__type_params__', 'language']
+>>> # Calling function references
+>>> def inside():
+...     print("This is inside")
+...
+>>> def outside(fn):
+...     print("This is outside")
+...     fn()
+...
+>>> outside(inside)
+This is outside
+This is inside
+>>> outside(inside())
+This is inside
+This is outside
+Traceback (most recent call last):
+  File "<python-input-16>", line 1, in <module>
+    outside(inside())
+    ~~~~~~~^^^^^^^^^^
+  File "<python-input-14>", line 3, in outside
+    fn()
+    ~~^^
+TypeError: 'NoneType' object is not callable
+>>> # Functions as arguments in stdlib
+>>> animals = ["ferret", "vole", "dog", "gecko"]
+>>> sorted(animals)
+['dog', 'ferret', 'gecko', 'vole']
+>>> for animal in animals:
+...     print(animal, len(animal))
+...
+ferret 6
+vole 4
+dog 3
+gecko 5
+>>> sorted(animals, key=len)
+['dog', 'vole', 'gecko', 'ferret']

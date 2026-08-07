@@ -1,0 +1,272 @@
+version: '3.8'
+
+services:
+  # PostgreSQL with TimescaleDB
+  timescaledb:
+    image: timescale/timescaledb:latest-pg14
+    container_name: stockiq-timescaledb
+    environment:
+      POSTGRES_DB: stockiq
+      POSTGRES_USER: stockiq
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-stockiq_password}
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "5432:5432"
+    volumes:
+      - timescaledb_data:/var/lib/postgresql/data
+      - ./scripts/init_db.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U stockiq -d stockiq"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - stockiq-network
+    restart: unless-stopped
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: stockiq-redis
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf:ro
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-}
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - stockiq-network
+    restart: unless-stopped
+
+  # Celery Worker
+  celery-worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: stockiq-celery-worker
+    command: celery -A stockiq.infrastructure.tasks worker --loglevel=info --concurrency=4
+    environment:
+      DATABASE_URL: postgresql://stockiq:${POSTGRES_PASSWORD:-stockiq_password}@timescaledb:5432/stockiq
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/1
+      CELERY_RESULT_BACKEND: redis://redis:6379/2
+      NEWSAPI_KEY: ${NEWSAPI_KEY}
+      FINNHUB_API_KEY: ${FINNHUB_API_KEY}
+      ALPHAVANTAGE_API_KEY: ${ALPHAVANTAGE_API_KEY}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    depends_on:
+      timescaledb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./stockiq:/app/stockiq
+      - ./logs:/app/logs
+    networks:
+      - stockiq-network
+    restart: unless-stopped
+
+  # Celery Beat Scheduler
+  celery-beat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: stockiq-celery-beat
+    command: celery -A stockiq.infrastructure.tasks beat --loglevel=info
+    environment:
+      DATABASE_URL: postgresql://stockiq:${POSTGRES_PASSWORD:-stockiq_password}@timescaledb:5432/stockiq
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/1
+      CELERY_RESULT_BACKEND: redis://redis:6379/2
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    depends_on:
+      timescaledb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./stockiq:/app/stockiq
+      - ./logs:/app/logs
+    networks:
+      - stockiq-network
+    restart: unless-stopped
+
+  # Streamlit Web Application
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: stockiq-web
+    command: streamlit run app.py --server.port=8501 --server.address=0.0.0.0
+    environment:
+      DATABASE_URL: postgresql://stockiq:${POSTGRES_PASSWORD:-stockiq_password}@timescaledb:5432/stockiq
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/1
+      CELERY_RESULT_BACKEND: redis://redis:6379/2
+      NEWSAPI_KEY: ${NEWSAPI_KEY}
+      FINNHUB_API_KEY: ${FINNHUB_API_KEY}
+      ALPHAVANTAGE_API_KEY: ${ALPHAVANTAGE_API_KEY}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    ports:
+      - "8501:8501"
+    depends_on:
+      timescaledb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./stockiq:/app/stockiq
+      - ./logs:/app/logs
+    networks:
+      - stockiq-network
+    restart: unless-stopped
+
+  # Database Initialization (runs once)
+  db-init:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: stockiq-db-init
+    command: python scripts/init_db.py
+    environment:
+      DATABASE_URL: postgresql://stockiq:${POSTGRES_PASSWORD:-stockiq_password}@timescaledb:5432/stockiq
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      timescaledb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./stockiq:/app/stockiq
+      - ./scripts:/app/scripts
+    networks:
+      - stockiq-network
+    restart: "no"
+
+  # FastAPI Backend
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: stockiq-backend
+    command: sh -c "alembic upgrade head && uvicorn main:app --host 0.0.0.0 --port 8000"
+    environment:
+      SECRET_KEY: ${SECRET_KEY:-change-me-in-production}
+      ACCESS_TOKEN_EXPIRE_MINUTES: ${ACCESS_TOKEN_EXPIRE_MINUTES:-480}
+      REFRESH_TOKEN_EXPIRE_DAYS: ${REFRESH_TOKEN_EXPIRE_DAYS:-30}
+      DATABASE_URL: postgresql://stockiq:${POSTGRES_PASSWORD:-stockiq_password}@timescaledb:5432/stockiq
+      REDIS_URL: redis://redis:6379/0
+      FRONTEND_ORIGIN: ${FRONTEND_ORIGIN:-http://localhost:3000}
+      NEWSAPI_KEY: ${NEWSAPI_KEY}
+      FINNHUB_API_KEY: ${FINNHUB_API_KEY}
+      ALPHAVANTAGE_API_KEY: ${ALPHAVANTAGE_API_KEY}
+      WEBULL_APP_KEY: ${WEBULL_APP_KEY:-}
+      WEBULL_APP_SECRET: ${WEBULL_APP_SECRET:-}
+      WEBULL_REGION_ID: ${WEBULL_REGION_ID:-us}
+      WEBULL_ENDPOINT: ${WEBULL_ENDPOINT:-api.webull.com}
+      WEBULL_SANDBOX: ${WEBULL_SANDBOX:-false}
+      MARKET_DATA_SOURCE: ${MARKET_DATA_SOURCE:-yfinance}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
+      TAVILY_API_KEY: ${TAVILY_API_KEY:-}
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+    ports:
+      - "8000:8000"
+    depends_on:
+      timescaledb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - stockiq-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # AutoPilot / Auto-Trade Celery Worker (backend image — has app modules + deps)
+  autopilot-worker:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: stockiq-autopilot-worker
+    command: celery -A worker worker --loglevel=info --concurrency=2
+    environment:
+      DATABASE_URL: postgresql://stockiq:${POSTGRES_PASSWORD:-stockiq_password}@timescaledb:5432/stockiq
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/1
+      CELERY_RESULT_BACKEND: redis://redis:6379/2
+      MARKET_DATA_SOURCE: ${MARKET_DATA_SOURCE:-yfinance}
+      AUTOPILOT_DATA_PROVIDER: ${AUTOPILOT_DATA_PROVIDER:-yfinance}
+      FINNHUB_API_KEY: ${FINNHUB_API_KEY}
+      ALPHAVANTAGE_API_KEY: ${ALPHAVANTAGE_API_KEY}
+      NEWSAPI_KEY: ${NEWSAPI_KEY}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      TAVILY_API_KEY: ${TAVILY_API_KEY:-}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    depends_on:
+      timescaledb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - stockiq-network
+    restart: unless-stopped
+
+  # AutoPilot / Auto-Trade Celery Beat scheduler (backend image)
+  autopilot-beat:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: stockiq-autopilot-beat
+    command: celery -A worker beat --loglevel=info
+    environment:
+      DATABASE_URL: postgresql://stockiq:${POSTGRES_PASSWORD:-stockiq_password}@timescaledb:5432/stockiq
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/1
+      CELERY_RESULT_BACKEND: redis://redis:6379/2
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    depends_on:
+      timescaledb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - stockiq-network
+    restart: unless-stopped
+
+  # React Frontend (Nginx production build)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: stockiq-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - stockiq-network
+    restart: unless-stopped
+
+volumes:
+  timescaledb_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  stockiq-network:
+    driver: bridge

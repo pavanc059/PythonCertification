@@ -1,0 +1,31 @@
+>>> # Reducing an iterable
+>>> from operator import add
+>>> from functools import reduce
+>>> reduce(add, [1, 2, 3, 4, 5])
+15
+>>> sum([1, 2, 3, 4, 5])
+15
+>>> from operator import mul
+>>> reduce(mul, [1, 2, 3, 4, 5])
+120
+>>> from math import factorial
+>>> factorial(5)
+120
+>>> reduce(lambda x, y: x if x > y else y, [23, 49, 6, 32])
+49
+>>> max([23, 49, 6, 32])
+49
+>>> # Initial values
+>>> reduce(add, [1, 2, 3], 100)
+106
+>>> sum([1, 2, 3], start=100)
+106
+>>> # Combinations
+>>> reduce(add, filter(lambda x: x >= 100, [1, 100, 2, 200, 3, 300]))
+600
+>>> reduce(add,
+...     filter(lambda x: x[0] > "m",
+...         map(add, ["dog", "parrot", "snake", "cat"], 4*"+")
+...     )
+... )
+'parrot+snake+'

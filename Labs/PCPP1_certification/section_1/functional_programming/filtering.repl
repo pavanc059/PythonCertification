@@ -1,0 +1,36 @@
+>>> # Filtering data
+>>> values = [1, 111, 2, 222, 3, 333]
+>>> for value in values:
+...     if value > 100:
+...         print(value)
+...
+111
+222
+333
+>>> for value in filter(lambda x: x > 100, values):
+...     print(value)
+...
+111
+222
+333
+>>> filter(lambda x: x > 100, values)
+<filter object at 0x1050e3c40>
+>>> list(filter(lambda x: x > 100, values))
+[111, 222, 333]
+>>> range(10)
+range(0, 10)
+>>> list(range(10))
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+>>> list(filter(lambda x: x % 2 == 0, range(10)))
+[0, 2, 4, 6, 8]
+>>> fruit = ["apple", "Orange", "PEAR", "LEMON"]
+>>> fruit[0].isupper()
+False
+>>> fruit[-1].isupper()
+True
+>>> list(filter(lambda s: s.isupper(), fruit))
+['PEAR', 'LEMON']
+>>> # Truthiness
+>>> stuff = ["a", 1, 0, False, "", None]
+>>> list(filter(lambda x: x, stuff))
+['a', 1]
