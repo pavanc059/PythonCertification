@@ -57,6 +57,7 @@ class UserResponse(BaseModel):
     email: str
     name: str
     is_active: bool
+    role: str
     theme_preference: str
     created_at: datetime
 

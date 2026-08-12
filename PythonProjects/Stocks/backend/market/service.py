@@ -1247,6 +1247,7 @@ class WebullMarketService:
         Results are cached 10 minutes.
         """
         from config import settings
+        from settings.service import get_flag
         import hashlib, requests as _req
         from datetime import datetime, timedelta
 
@@ -1263,8 +1264,8 @@ class WebullMarketService:
         articles: List[dict] = []
         now = datetime.utcnow()
 
-        # ── 1. Finnhub company-news ───────────────────────────────────────────
-        if settings.finnhub_api_key and len(articles) < limit + offset + 10:
+        # ── 1. Finnhub company-news (Alternative Data flag required) ─────────
+        if get_flag("alternative_data") and settings.finnhub_api_key and len(articles) < limit + offset + 10:
             target = ticker.upper() if ticker else "SPY"
             try:
                 end = now
@@ -1442,6 +1443,7 @@ class WebullMarketService:
         Requirements: 4.3, 4.5, 5.1
         """
         from config import settings
+        from settings.service import get_flag
         import uuid, hashlib, requests as _req
         from datetime import datetime, timedelta
 
@@ -1453,8 +1455,8 @@ class WebullMarketService:
         articles: List[dict] = []
         ticker_upper = ticker.upper()
 
-        # ── 1. Finnhub company news ───────────────────────────────────────
-        if settings.finnhub_api_key:
+        # ── 1. Finnhub company news (Alternative Data flag required) ─────────
+        if get_flag("alternative_data") and settings.finnhub_api_key:
             try:
                 end = datetime.utcnow()
                 start = end - timedelta(days=7)
@@ -1491,8 +1493,8 @@ class WebullMarketService:
             except Exception as exc:
                 logger.warning("Finnhub news failed for %s: %s", ticker, exc)
 
-        # ── 2. AlphaVantage NEWS_SENTIMENT ────────────────────────────────
-        if settings.alphavantage_api_key and len(articles) < limit:
+        # ── 2. AlphaVantage NEWS_SENTIMENT (Alternative Data flag required) ─
+        if get_flag("alternative_data") and settings.alphavantage_api_key and len(articles) < limit:
             try:
                 resp = _req.get(
                     "https://www.alphavantage.co/query",
@@ -1937,34 +1939,33 @@ class WebullMarketService:
             norm_score = max(-1.0, min(1.0, score / 2.5))
 
             # ── Stage 2: News sentiment + LLM enrichment ─────────────────────
-            # This is non-blocking: any failure leaves norm_score unchanged.
-            news_sentiment_summary = ""
+            # Only runs if the Deep Learning feature flag is enabled.
+            # Skipped gracefully if the flag is off or on any failure.
+            llm_sentiment_adj = 0.0
             llm_reason = ""
-            llm_sentiment_adj = 0.0  # how much to shift norm_score
 
             try:
-                news_headlines = self._fetch_recent_headlines(ticker)
-                if news_headlines:
-                    avg_sentiment = sum(h.get("sentiment", 0.0) for h in news_headlines) / len(news_headlines)
-                    # Small direct adjustment from news sentiment
-                    llm_sentiment_adj += max(-0.2, min(0.2, avg_sentiment * 0.3))
-                    news_sentiment_summary = "; ".join(h["title"][:80] for h in news_headlines[:3])
+                from settings.service import get_flag
+                if get_flag("deep_learning"):
+                    news_headlines = self._fetch_recent_headlines(ticker)
+                    if news_headlines:
+                        avg_sentiment = sum(h.get("sentiment", 0.0) for h in news_headlines) / len(news_headlines)
+                        llm_sentiment_adj += max(-0.2, min(0.2, avg_sentiment * 0.3))
 
-                    # LLM enrichment (only when key is available)
-                    if settings.groq_api_key or settings.openai_api_key:
-                        llm_result = self._llm_enrich_prediction(
-                            ticker=ticker,
-                            norm_score=norm_score,
-                            rsi=rsi_val,
-                            macd_hist=macd_hist,
-                            golden=golden,
-                            death=death,
-                            momentum_30d=momentum_30d,
-                            news_headlines=news_headlines,
-                        )
-                        if llm_result:
-                            llm_sentiment_adj += llm_result.get("score_adj", 0.0)
-                            llm_reason = llm_result.get("reason", "")
+                        if settings.groq_api_key or settings.openai_api_key:
+                            llm_result = self._llm_enrich_prediction(
+                                ticker=ticker,
+                                norm_score=norm_score,
+                                rsi=rsi_val,
+                                macd_hist=macd_hist,
+                                golden=golden,
+                                death=death,
+                                momentum_30d=momentum_30d,
+                                news_headlines=news_headlines,
+                            )
+                            if llm_result:
+                                llm_sentiment_adj += llm_result.get("score_adj", 0.0)
+                                llm_reason = llm_result.get("reason", "")
             except Exception as exc:
                 logger.debug("News/LLM enrichment skipped for %s: %s", ticker, exc)
 
@@ -2026,16 +2027,18 @@ class WebullMarketService:
         """
         Fetch the 5 most recent news headlines + rough sentiment for a ticker.
 
-        Uses AlphaVantage (with sentiment scores) if configured, falls back to
-        yfinance news (sentiment=0). Returns list of {title, sentiment, source}.
+        Uses AlphaVantage (with sentiment scores) if the Alternative Data flag
+        is enabled, falls back to yfinance news (always available, sentiment=0).
+        Returns list of {title, sentiment, source}.
         """
         from config import settings
+        from settings.service import get_flag
         import requests as _req
 
         headlines = []
 
-        # AlphaVantage — has per-ticker sentiment scores
-        if settings.alphavantage_api_key:
+        # AlphaVantage — paid API, gated by Alternative Data feature flag
+        if get_flag("alternative_data") and settings.alphavantage_api_key:
             try:
                 resp = _req.get(
                     "https://www.alphavantage.co/query",

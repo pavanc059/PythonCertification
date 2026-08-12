@@ -328,6 +328,18 @@ class AutoPilotExecutor:
         self.db.commit()
         logger.info("AutoPilot OPEN %s x%d @ $%.4f (stop $%.4f, tp $%.4f)",
                     cand.ticker, qty, fill, stop, tp)
+        # Audit trail
+        try:
+            from activity.logger import log_event
+            log_event(self.db, user_id=config.user_id, category="autopilot",
+                      event_type="ap_entry",
+                      description=f"AutoPilot ({config.market_type}) entered {cand.ticker} x{qty} @ ${fill:.2f} — {reason[:100]}",
+                      metadata={"ticker": cand.ticker, "qty": qty, "price": fill,
+                                "stop": stop, "tp": tp, "momentum": cand.momentum_score,
+                                "llm_confidence": verdict.confidence if verdict else None,
+                                "market_type": config.market_type})
+        except Exception:
+            pass
         return trade
 
     def _close_trade(
@@ -360,6 +372,16 @@ class AutoPilotExecutor:
         self.db.commit()
         logger.info("AutoPilot CLOSE %s x%d @ $%.4f — %s, P&L $%.2f",
                     trade.ticker, trade.quantity, fill, reason, pnl)
+        # Audit trail
+        try:
+            from activity.logger import log_event
+            log_event(self.db, user_id=config.user_id, category="autopilot",
+                      event_type="ap_exit",
+                      description=f"AutoPilot ({config.market_type}) closed {trade.ticker} x{trade.quantity} @ ${fill:.2f} [{reason}], P&L ${pnl:+.2f}",
+                      metadata={"ticker": trade.ticker, "qty": trade.quantity, "price": fill,
+                                "reason": reason, "pnl": pnl, "market_type": config.market_type})
+        except Exception:
+            pass
         return True
 
     # ------------------------------------------------------------------

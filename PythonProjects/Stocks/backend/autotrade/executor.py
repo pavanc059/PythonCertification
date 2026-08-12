@@ -191,6 +191,17 @@ class BotExecutor:
                     details = f"BUY {decision.quantity} shares @ ${current_price:.2f}"
                     risk_manager.record_trade_open()
                     logger.info("Bot %s placed BUY order: %s", bot.id, order_id)
+                    # Audit trail
+                    try:
+                        from activity.logger import log_event
+                        log_event(self.db, user_id=bot.user_id, category="autotrade",
+                                  event_type="bot_order_placed",
+                                  description=f"Bot '{bot.name}' bought {decision.quantity}x {ticker} @ ${current_price:.2f} ({signal.reason[:80]})",
+                                  metadata={"bot_id": str(bot.id), "ticker": ticker, "side": "buy",
+                                            "qty": decision.quantity, "price": current_price,
+                                            "signal": signal.type.value, "confidence": signal.confidence})
+                    except Exception:
+                        pass
                 else:
                     action_taken = "order_rejected"
                     details = result.get("reason", "Unknown rejection")
@@ -217,6 +228,16 @@ class BotExecutor:
                     bot_service.record_trade(bot.id, pnl=pnl, is_win=(pnl >= 0))
                     risk_manager.record_trade_close(pnl)
                     logger.info("Bot %s placed SELL order: %s", bot.id, order_id)
+                    # Audit trail
+                    try:
+                        from activity.logger import log_event
+                        log_event(self.db, user_id=bot.user_id, category="autotrade",
+                                  event_type="bot_order_placed",
+                                  description=f"Bot '{bot.name}' sold {pos['quantity']}x {ticker} @ ${current_price:.2f}, P&L ${pnl:+.2f}",
+                                  metadata={"bot_id": str(bot.id), "ticker": ticker, "side": "sell",
+                                            "qty": pos["quantity"], "price": current_price, "pnl": pnl})
+                    except Exception:
+                        pass
                 else:
                     action_taken = "order_rejected"
                     details = result.get("reason", "Unknown rejection")

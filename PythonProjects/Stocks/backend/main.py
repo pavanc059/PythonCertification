@@ -50,7 +50,7 @@ from market.router import router as market_router
 app.include_router(market_router, prefix="/market", tags=["market"])
 
 from settings.router import router as settings_router
-app.include_router(settings_router, prefix="/api/v1/settings", tags=["settings"])
+app.include_router(settings_router, prefix="/settings", tags=["settings"])
 
 from websocket.price_feed import router as ws_router
 app.include_router(ws_router, tags=["websocket"])
@@ -63,6 +63,15 @@ app.include_router(autotrade_router, prefix="/autotrade", tags=["autotrade"])
 
 from autopilot.router import router as autopilot_router
 app.include_router(autopilot_router, prefix="/autopilot", tags=["autopilot"])
+
+from activity.router import router as activity_router
+app.include_router(activity_router, prefix="/activity", tags=["activity"])
+
+from assistant.router import router as assistant_router
+app.include_router(assistant_router, prefix="/assistant", tags=["assistant"])
+
+from admin.router import router as admin_router
+app.include_router(admin_router, prefix="/admin", tags=["admin"])
 
 
 # ---------------------------------------------------------------------------

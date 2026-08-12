@@ -122,6 +122,15 @@ async def register(
 
     access, refresh = _make_tokens(user)
     _set_refresh_cookie(response, refresh)
+    # Log registration activity
+    try:
+        from activity.logger import log_event
+        from datetime import datetime as _dt
+        log_event(db, user_id=user.id, category="auth", event_type="register",
+                  description=f"New account created for {user.email}",
+                  metadata={"email": user.email, "ts": _dt.utcnow().isoformat()})
+    except Exception:
+        pass
     return _token_response(user, access)
 
 
@@ -148,10 +157,18 @@ async def login(
 
     access, refresh = _make_tokens(user)
     _set_refresh_cookie(response, refresh)
+    # Update last_login_at and log activity
+    try:
+        from datetime import datetime as _dt
+        user.last_login_at = _dt.utcnow()
+        db.commit()
+        from activity.logger import log_event
+        log_event(db, user_id=user.id, category="auth", event_type="login",
+                  description=f"Logged in",
+                  metadata={"email": user.email, "ts": _dt.utcnow().isoformat()})
+    except Exception:
+        pass
     return _token_response(user, access)
-
-
-@router.post("/logout")
 async def logout(
     response: Response,
     current_user: User = Depends(get_current_user),
